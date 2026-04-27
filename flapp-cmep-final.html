@@ -1,0 +1,241 @@
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<div id="flapp-cmep-root" style="font-family:'Onest',sans-serif;max-width:560px;margin:0 auto;box-sizing:border-box;">
+  <div style="background:white;border:1.5px solid #d1d9f0;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(26,77,219,0.12);">
+
+    <div style="background:linear-gradient(135deg,#0057b8 0%,#1a4ddb 100%);padding:28px 32px 24px;">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:4px;">
+        <span style="font-size:11px;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;color:#93c5fd;">Flapp</span>
+        <span style="font-size:9px;font-weight:300;color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.1);padding:3px 9px;border-radius:100px;text-transform:uppercase;">Herramienta gratuita</span>
+      </div>
+      <div style="font-size:1.5rem;font-weight:500;color:white;letter-spacing:-0.02em;line-height:1.15;margin-bottom:6px;">
+        Calculadora de <span style="color:#60a5fa;">CMEP</span>
+      </div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.55);">Costo Máximo de Envío Permitido · Basada en tu P&L real</div>
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);padding:14px 16px;border-radius:8px;margin-top:16px;line-height:1.9;">
+        <div style="font-size:9px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:6px;">Fórmula</div>
+        <div style="font-size:13px;font-weight:500;color:white;">
+          <span style="color:#60a5fa;">CMEP</span>
+          <span style="color:rgba(255,255,255,0.4);margin:0 6px;">=</span>
+          <span style="color:rgba(255,255,255,0.85);">(</span><span style="color:#93c5fd;">AOV</span>
+          <span style="color:rgba(255,255,255,0.4);margin:0 4px;">×</span>
+          <span style="color:#93c5fd;">Margen Bruto %</span><span style="color:rgba(255,255,255,0.85);">)</span>
+          <span style="color:rgba(255,255,255,0.4);margin:0 6px;">−</span>
+          <span style="color:#93c5fd;">CAC</span>
+          <span style="color:rgba(255,255,255,0.4);margin:0 6px;">−</span>
+          <span style="color:#93c5fd;">Margen Neto Deseado</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding:28px 32px;">
+
+      <div style="display:flex;border:1.5px solid #c9eafb;border-radius:8px;overflow:hidden;width:fit-content;margin-bottom:24px;">
+        <button id="fcBtn_MXN" style="font-size:12px;font-weight:600;padding:7px 16px;border:none;background:#f8faff;color:#5a6a8a;cursor:pointer;font-family:'Onest',sans-serif;">MXN</button>
+        <button id="fcBtn_COP" style="font-size:12px;font-weight:600;padding:7px 16px;border:none;background:#f8faff;color:#5a6a8a;cursor:pointer;font-family:'Onest',sans-serif;">COP</button>
+        <button id="fcBtn_CLP" style="font-size:12px;font-weight:600;padding:7px 16px;border:none;background:#f8faff;color:#5a6a8a;cursor:pointer;font-family:'Onest',sans-serif;">CLP</button>
+        <button id="fcBtn_USD" style="font-size:12px;font-weight:600;padding:7px 16px;border:none;background:#1a4ddb;color:white;cursor:pointer;font-family:'Onest',sans-serif;">USD</button>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <label style="font-size:10px;font-weight:700;letter-spacing:0.08em;color:#5a6a8a;text-transform:uppercase;">AOV · <span style="color:#1a4ddb;">Ticket promedio</span></label>
+          <div style="position:relative;display:flex;align-items:center;">
+            <span id="fcP1" style="position:absolute;left:11px;font-size:13px;font-weight:500;color:#5a6a8a;pointer-events:none;">US$</span>
+            <input id="fcAov" type="number" value="50" min="0" style="width:100%;border:1.5px solid #d1d9f0;padding:9px 12px 9px 44px;font-family:'Onest',sans-serif;font-size:15px;font-weight:700;background:#f8faff;color:#0a0f1e;border-radius:8px;outline:none;">
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <label style="font-size:10px;font-weight:700;letter-spacing:0.08em;color:#5a6a8a;text-transform:uppercase;">Margen Bruto · <span style="color:#1a4ddb;">%</span></label>
+          <div style="position:relative;display:flex;align-items:center;">
+            <input id="fcMargen" type="number" value="50" min="0" max="100" style="width:100%;border:1.5px solid #d1d9f0;padding:9px 34px 9px 12px;font-family:'Onest',sans-serif;font-size:15px;font-weight:700;background:#f8faff;color:#0a0f1e;border-radius:8px;outline:none;">
+            <span style="position:absolute;right:11px;font-size:13px;font-weight:500;color:#5a6a8a;pointer-events:none;">%</span>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <label style="font-size:10px;font-weight:700;letter-spacing:0.08em;color:#5a6a8a;text-transform:uppercase;">CAC · <span style="color:#1a4ddb;">Costo adquisición</span></label>
+          <div style="position:relative;display:flex;align-items:center;">
+            <span id="fcP2" style="position:absolute;left:11px;font-size:13px;font-weight:500;color:#5a6a8a;pointer-events:none;">US$</span>
+            <input id="fcCac" type="number" value="5" min="0" style="width:100%;border:1.5px solid #d1d9f0;padding:9px 12px 9px 44px;font-family:'Onest',sans-serif;font-size:15px;font-weight:700;background:#f8faff;color:#0a0f1e;border-radius:8px;outline:none;">
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <label style="font-size:10px;font-weight:700;letter-spacing:0.08em;color:#5a6a8a;text-transform:uppercase;">Margen Neto · <span style="color:#1a4ddb;">% deseado</span></label>
+          <div style="position:relative;display:flex;align-items:center;">
+            <input id="fcMargenD" type="number" value="20" min="0" max="100" style="width:100%;border:1.5px solid #d1d9f0;padding:9px 34px 9px 12px;font-family:'Onest',sans-serif;font-size:15px;font-weight:700;background:#f8faff;color:#0a0f1e;border-radius:8px;outline:none;">
+            <span style="position:absolute;right:11px;font-size:13px;font-weight:500;color:#5a6a8a;pointer-events:none;">%</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="border-top:1.5px solid #d1d9f0;margin:20px 0 18px;"></div>
+      <div style="font-size:11px;font-weight:700;color:#5a6a8a;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:10px;">Comparar con tarifa actual (opcional)</div>
+      <div style="position:relative;display:flex;align-items:center;">
+        <span id="fcP3" style="position:absolute;left:11px;font-size:13px;font-weight:500;color:#5a6a8a;pointer-events:none;">US$</span>
+        <input id="fcTarifa" type="number" placeholder="Cuanto pagas hoy?" min="0" style="width:100%;border:1.5px solid #d1d9f0;padding:9px 12px 9px 44px;font-family:'Onest',sans-serif;font-size:15px;font-weight:700;background:#f8faff;color:#0a0f1e;border-radius:8px;outline:none;">
+      </div>
+
+      <div id="fcResult" style="background:#f0f7fa;border:1.5px solid #BBDDE6;border-radius:12px;padding:22px;margin-top:22px;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#5a6a8a;margin-bottom:6px;">Tu CMEP — Presupuesto máximo logístico</div>
+        <div id="fcVal" style="font-size:2.4rem;font-weight:900;color:#0057b8;letter-spacing:-0.03em;line-height:1;">--</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding-top:14px;border-top:1px solid rgba(0,0,0,0.07);margin-top:12px;">
+          <div style="display:flex;flex-direction:column;gap:2px;">
+            <span style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#5a6a8a;">Utilidad bruta</span>
+            <span id="fcBk1" style="font-size:13px;font-weight:700;color:#0a0f1e;">--</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:2px;">
+            <span style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#5a6a8a;">Margen neto obj.</span>
+            <span id="fcBk2" style="font-size:13px;font-weight:700;color:#0a0f1e;">--</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:2px;">
+            <span style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#5a6a8a;">Tarifa actual</span>
+            <span id="fcBk3" style="font-size:13px;font-weight:700;color:#0a0f1e;">--</span>
+          </div>
+        </div>
+        <div id="fcVerdict" style="display:none;margin-top:14px;padding:10px 14px;border-radius:8px;font-size:12px;font-weight:500;gap:8px;line-height:1.5;">
+          <span id="fcVIcon"></span>
+          <span id="fcVText"></span>
+        </div>
+        <div style="margin-top:14px;font-size:11px;color:#5a6a8a;padding-left:12px;border-left:2px solid #BBDDE6;line-height:1.6;">
+          Cubre <strong>empaque + última milla</strong>. Si tu empaque cuesta US$5, tu techo real para el courier es CMEP − US$5.
+        </div>
+      </div>
+
+    </div>
+
+    <div style="background:#f8faff;border-top:1.5px solid #d1d9f0;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+      <div style="font-size:11px;color:#5a6a8a;font-weight:500;"><strong style="color:#0057b8;font-weight:800;">Flapp</strong> · Logística Inteligente</div>
+      <div style="font-size:10px;color:#b0b8cc;">
+        Datos: <a href="https://www.wisesystems.com/blog/last-mile-statistics-2023-insights-innovations-trends/" target="_blank" style="color:#1a4ddb;text-decoration:none;font-weight:600;">Wise Systems</a> ·
+        <a href="https://www.shipveho.com/blog/what-is-the-true-cost-of-failed-deliveries-in-e-commerce" target="_blank" style="color:#1a4ddb;text-decoration:none;font-weight:600;">ShipVeho</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+  var fcCurrency = 'USD';
+  var fcSymbols = { MXN: '$', COP: '$', CLP: '$', USD: 'US$' };
+  var fcDefaults = {
+    MXN: { aov: 1000,   cac: 100   },
+    COP: { aov: 200000, cac: 20000 },
+    CLP: { aov: 55000,  cac: 4500  },
+    USD: { aov: 50,     cac: 5     }
+  };
+  var fcFmt = {
+    MXN: function(v) { return '$' + Math.round(v).toLocaleString('es-MX') + ' MXN'; },
+    COP: function(v) { return '$' + Math.round(v).toLocaleString('es-CO') + ' COP'; },
+    CLP: function(v) { return '$' + Math.round(v).toLocaleString('es-CL') + ' CLP'; },
+    USD: function(v) { return 'US$' + parseFloat(v).toFixed(2); }
+  };
+
+  function setCurrency(c) {
+    fcCurrency = c;
+    ['MXN','COP','CLP','USD'].forEach(function(cur) {
+      var btn = document.getElementById('fcBtn_' + cur);
+      if (btn) {
+        btn.style.background = cur === c ? '#1a4ddb' : '#f8faff';
+        btn.style.color = cur === c ? 'white' : '#5a6a8a';
+      }
+    });
+    ['fcP1','fcP2','fcP3'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.textContent = fcSymbols[c];
+    });
+    var d = fcDefaults[c];
+    document.getElementById('fcAov').value = d.aov;
+    document.getElementById('fcCac').value = d.cac;
+    calc();
+  }
+
+  function calc() {
+    var aov     = parseFloat(document.getElementById('fcAov').value) || 0;
+    var margen  = parseFloat(document.getElementById('fcMargen').value) || 0;
+    var cac     = parseFloat(document.getElementById('fcCac').value) || 0;
+    var margenD = parseFloat(document.getElementById('fcMargenD').value) || 0;
+    var tarifa  = parseFloat(document.getElementById('fcTarifa').value);
+
+    var resEl     = document.getElementById('fcResult');
+    var valEl     = document.getElementById('fcVal');
+    var verdictEl = document.getElementById('fcVerdict');
+    var vIcon     = document.getElementById('fcVIcon');
+    var vText     = document.getElementById('fcVText');
+
+    if (aov <= 0) { valEl.textContent = '--'; return; }
+
+    var utilidad      = aov * (margen / 100);
+    var margenNetoAbs = aov * (margenD / 100);
+    var cmep          = utilidad - cac - margenNetoAbs;
+
+    verdictEl.style.display = 'none';
+    document.getElementById('fcBk1').textContent = fcFmt[fcCurrency](utilidad);
+    document.getElementById('fcBk2').textContent = fcFmt[fcCurrency](margenNetoAbs);
+
+    if (cmep <= 0) {
+      resEl.style.background = '#fff5f5'; resEl.style.borderColor = '#dc2626';
+      valEl.style.color = '#dc2626'; valEl.style.fontSize = '1.5rem';
+      valEl.textContent = 'Sin margen logistico';
+      verdictEl.style.display = 'flex';
+      verdictEl.style.background = 'rgba(220,38,38,0.07)';
+      verdictEl.style.color = '#7f1d1d';
+      vIcon.textContent = '!';
+      vText.textContent = 'Modelo inviable. Revisa margenes, CAC o margen neto deseado.';
+      document.getElementById('fcBk3').textContent = '--';
+      return;
+    }
+
+    valEl.textContent = fcFmt[fcCurrency](cmep);
+    valEl.style.fontSize = '2.4rem';
+    valEl.style.color = '#0057b8';
+
+    if (!isNaN(tarifa) && tarifa > 0) {
+      document.getElementById('fcBk3').textContent = fcFmt[fcCurrency](tarifa);
+      var diff = cmep - tarifa;
+      verdictEl.style.display = 'flex';
+      if (diff < 0) {
+        resEl.style.background = '#fff5f5'; resEl.style.borderColor = '#dc2626';
+        valEl.style.color = '#dc2626';
+        verdictEl.style.background = 'rgba(220,38,38,0.07)'; verdictEl.style.color = '#7f1d1d';
+        vIcon.textContent = '!';
+        vText.textContent = 'Pagas ' + fcFmt[fcCurrency](Math.abs(diff)) + ' mas de tu limite. Cada orden destruye margen.';
+      } else if (diff < cmep * 0.15) {
+        resEl.style.background = '#fffbeb'; resEl.style.borderColor = '#d97706';
+        valEl.style.color = '#d97706';
+        verdictEl.style.background = 'rgba(217,119,6,0.09)'; verdictEl.style.color = '#78350f';
+        vIcon.textContent = '~';
+        vText.textContent = 'A solo ' + fcFmt[fcCurrency](diff) + ' del limite. Un recargo o fallo te saca del margen.';
+      } else {
+        resEl.style.background = '#f0fdf4'; resEl.style.borderColor = '#16a34a';
+        valEl.style.color = '#16a34a';
+        verdictEl.style.background = 'rgba(22,163,74,0.09)'; verdictEl.style.color = '#14532d';
+        vIcon.textContent = 'OK';
+        vText.textContent = 'Colchon de ' + fcFmt[fcCurrency](diff) + '. Usalo para absorber fallos, no para subir el costo base.';
+      }
+    } else {
+      resEl.style.background = '#f0f7fa'; resEl.style.borderColor = '#BBDDE6';
+      valEl.style.color = '#0057b8';
+      document.getElementById('fcBk3').textContent = '--';
+    }
+  }
+
+  ['MXN','COP','CLP','USD'].forEach(function(cur) {
+    var btn = document.getElementById('fcBtn_' + cur);
+    if (btn) btn.addEventListener('click', function() { setCurrency(cur); });
+  });
+
+  ['fcAov','fcMargen','fcCac','fcMargenD','fcTarifa'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.addEventListener('input', calc);
+  });
+
+  calc();
+});
+</script>
