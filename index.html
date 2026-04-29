@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Flapp Tools — Herramientas para tu eCommerce</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --blue: #0057B8;
+    --blue-dark: #003f8a;
+    --blue-light: #C9EAFB;
+    --white: #ffffff;
+    --off-white: #f4f9fe;
+    --gray-100: #eaf4fc;
+    --gray-200: #d0e8f7;
+    --text-dark: #0a1e35;
+    --text-mid: #2d5478;
+    --text-light: #5a86a8;
+    --border: #c9eafb;
+    --radius: 18px;
+    --radius-sm: 12px;
+    --shadow: 0 4px 24px rgba(0,87,184,0.10);
+    --shadow-lg: 0 8px 40px rgba(0,87,184,0.16);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: linear-gradient(135deg, var(--off-white) 0%, #f9fcfe 100%);
+    color: var(--text-dark);
+    font-family: 'Onest', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+  }
+
+  .wrap { width: 100%; max-width: 900px; }
+
+  /* Header */
+  header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .logo-section {
+    margin-bottom: 28px;
+  }
+
+  .logo {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--blue);
+    letter-spacing: -0.02em;
+  }
+
+  .logo span { color: var(--text-dark); }
+
+  h1 {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--text-dark);
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+
+  h1 span { color: var(--blue); }
+
+  .subtitle {
+    font-size: 18px;
+    color: var(--text-light);
+    font-weight: 400;
+    line-height: 1.6;
+    max-width: 580px;
+    margin: 0 auto;
+  }
+
+  /* Tools Grid */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  .tool-card {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .tool-card:hover {
+    border-color: var(--blue);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+  }
+
+  .tool-icon {
+    font-size: 40px;
+    line-height: 1;
+  }
+
+  .tool-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-dark);
+    letter-spacing: -0.01em;
+  }
+
+  .tool-desc {
+    font-size: 14px;
+    color: var(--text-light);
+    font-weight: 400;
+    line-height: 1.6;
+    flex-grow: 1;
+  }
+
+  .tool-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--blue);
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    transition: gap 0.2s;
+  }
+
+  .tool-card:hover .tool-link {
+    gap: 12px;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding-top: 40px;
+    border-top: 1.5px solid var(--border);
+    color: var(--text-light);
+    font-size: 13px;
+  }
+
+  footer a {
+    color: var(--blue);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 640px) {
+    header { margin-bottom: 40px; }
+    h1 { font-size: 32px; }
+    .subtitle { font-size: 15px; }
+    .tool-card { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="logo-section">
+      <div class="logo">flapp <span>tools</span></div>
+    </div>
+    <h1>Herramientas <span>inteligentes</span> para tu eCommerce</h1>
+    <p class="subtitle">Calcula tu potencial de entrega, optimiza tu operación y toma decisiones basadas en datos reales.</p>
+  </header>
+
+  <div class="tools-grid">
+    
+    <a href="/flapp-radio-entrega" class="tool-card">
+      <div class="tool-icon">🗺️</div>
+      <div class="tool-name">Radio de Entrega</div>
+      <p class="tool-desc">Descubre hasta dónde puedes llegar en 3 horas desde tu tienda. Ve tu radio real de cobertura en el mapa.</p>
+      <span class="tool-link">Abrir herramienta →</span>
+    </a>
+
+    <a href="/cmep.html" class="tool-card">
+      <div class="tool-icon">📊</div>
+      <div class="tool-name">CMEP</div>
+      <p class="tool-desc">Analiza y optimiza tu operación de eCommerce. Métricas clave para crecer con inteligencia.</p>
+      <span class="tool-link">Abrir herramienta →</span>
+    </a>
+
+  </div>
+
+  <footer>
+    <p>Hecho por <a href="https://weflapp.com" target="_blank">Flapp</a> — Tu tienda es tu centro de distribución</p>
+  </footer>
+
+</div>
+</body>
+</html>
