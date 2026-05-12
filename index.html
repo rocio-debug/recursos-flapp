@@ -84,7 +84,7 @@
   /* Tools Grid */
   .tools-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 24px;
     margin-bottom: 40px;
   }
@@ -101,12 +101,28 @@
     transition: all 0.3s ease;
     text-decoration: none;
     color: inherit;
+    position: relative;
   }
 
   .tool-card:hover {
     border-color: var(--blue);
     box-shadow: var(--shadow-lg);
     transform: translateY(-4px);
+  }
+
+  /* Badge for new tools */
+  .tool-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--blue);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
   }
 
   .tool-icon {
@@ -196,6 +212,14 @@
       <div class="tool-name">CMEP</div>
       <p class="tool-desc">Analiza y optimiza tu operación de eCommerce. Métricas clave para crecer con inteligencia.</p>
       <span class="tool-link">Abrir herramienta →</span>
+    </a>
+
+    <a href="/cyber2025-ebook.html" class="tool-card">
+      <div class="tool-badge">Nuevo</div>
+      <div class="tool-icon">📖</div>
+      <div class="tool-name">Guía Cyber 2025</div>
+      <p class="tool-desc">Todo lo que necesitas saber para preparar tu eCommerce para el Cyber. Estrategias, checklist y claves operativas.</p>
+      <span class="tool-link">Leer ebook →</span>
     </a>
 
   </div>
