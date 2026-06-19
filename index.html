@@ -1,268 +1,237 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Flapp Resources — Herramientas y Guías para eCommerce</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Flapp Tools — Herramientas para tu eCommerce</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
-:root {
-  --blue: #0057B8;
-  --blue-dark: #003f8a;
-  --blue-light: #C9EAFB;
-  --white: #ffffff;
-  --off-white: #f4f9fe;
-  --gray-100: #eaf4fc;
-  --gray-200: #d0e8f7;
-  --text-dark: #0a1e35;
-  --text-mid: #2d5478;
-  --text-light: #5a86a8;
-  --border: #c9eafb;
-  --radius: 18px;
-  --shadow: 0 4px 24px rgba(0, 87, 184, 0.10);
-  --shadow-lg: 0 8px 40px rgba(0, 87, 184, 0.16);
-}
+  :root {
+    --blue: #0057B8;
+    --blue-dark: #003f8a;
+    --blue-light: #C9EAFB;
+    --white: #ffffff;
+    --off-white: #f4f9fe;
+    --gray-100: #eaf4fc;
+    --gray-200: #d0e8f7;
+    --text-dark: #0a1e35;
+    --text-mid: #2d5478;
+    --text-light: #5a86a8;
+    --border: #c9eafb;
+    --radius: 18px;
+    --radius-sm: 12px;
+    --shadow: 0 4px 24px rgba(0,87,184,0.10);
+    --shadow-lg: 0 8px 40px rgba(0,87,184,0.16);
+  }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-body {
-  font-family: 'Onest', sans-serif;
-  background: linear-gradient(135deg, var(--off-white) 0%, #f9fcfe 100%);
-  color: var(--text-dark);
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 48px 24px;
-}
-
-.wrap {
-  width: 100%;
-  max-width: 1000px;
-}
-
-header {
-  text-align: center;
-  margin-bottom: 56px;
-}
-
-.logo {
-  font-size: 28px;
-  font-weight: 800;
-  color: var(--blue);
-  margin-bottom: 24px;
-  letter-spacing: -0.02em;
-}
-
-.logo span {
-  color: var(--text-dark);
-}
-
-h1 {
-  font-size: clamp(34px, 5vw, 52px);
-  line-height: 1.05;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  margin-bottom: 18px;
-}
-
-h1 span {
-  color: var(--blue);
-}
-
-.subtitle {
-  max-width: 650px;
-  margin: 0 auto;
-  font-size: 18px;
-  line-height: 1.7;
-  color: var(--text-light);
-}
-
-.tools-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
-}
-
-.tool-card {
-  background: var(--white);
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius);
-  padding: 30px;
-  text-decoration: none;
-  color: inherit;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  position: relative;
-  transition: all .3s ease;
-  box-shadow: var(--shadow);
-}
-
-.tool-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--blue);
-  box-shadow: var(--shadow-lg);
-}
-
-.tool-badge {
-  position: absolute;
-  top: 18px;
-  right: 18px;
-  background: var(--blue);
-  color: white;
-  padding: 5px 10px;
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-}
-
-.tool-icon {
-  font-size: 40px;
-  line-height: 1;
-}
-
-.tool-name {
-  font-size: 20px;
-  font-weight: 700;
-}
-
-.tool-desc {
-  font-size: 14px;
-  line-height: 1.65;
-  color: var(--text-light);
-  flex-grow: 1;
-}
-
-.tool-link {
-  color: var(--blue);
-  font-weight: 600;
-  font-size: 14px;
-}
-
-footer {
-  margin-top: 48px;
-  padding-top: 32px;
-  border-top: 1px solid var(--border);
-  text-align: center;
-  font-size: 13px;
-  color: var(--text-light);
-}
-
-footer a {
-  color: var(--blue);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-footer a:hover {
-  text-decoration: underline;
-}
-
-@media (max-width: 640px) {
   body {
-    padding: 32px 18px;
+    background: linear-gradient(135deg, var(--off-white) 0%, #f9fcfe 100%);
+    color: var(--text-dark);
+    font-family: 'Onest', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+  }
+
+  .wrap { width: 100%; max-width: 900px; }
+
+  /* Header */
+  header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .logo-section {
+    margin-bottom: 28px;
+  }
+
+  .logo {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--blue);
+    letter-spacing: -0.02em;
+  }
+
+  .logo span { color: var(--text-dark); }
+
+  h1 {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--text-dark);
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+
+  h1 span { color: var(--blue); }
+
+  .subtitle {
+    font-size: 18px;
+    color: var(--text-light);
+    font-weight: 400;
+    line-height: 1.6;
+    max-width: 580px;
+    margin: 0 auto;
+  }
+
+  /* Tools Grid */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
   }
 
   .tool-card {
-    padding: 24px;
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
   }
 
-  .subtitle {
-    font-size: 16px;
+  .tool-card:hover {
+    border-color: var(--blue);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
   }
-}
+
+  /* Badge for new tools */
+  .tool-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--blue);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+
+  .tool-icon {
+    font-size: 40px;
+    line-height: 1;
+  }
+
+  .tool-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-dark);
+    letter-spacing: -0.01em;
+  }
+
+  .tool-desc {
+    font-size: 14px;
+    color: var(--text-light);
+    font-weight: 400;
+    line-height: 1.6;
+    flex-grow: 1;
+  }
+
+  .tool-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--blue);
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    transition: gap 0.2s;
+  }
+
+  .tool-card:hover .tool-link {
+    gap: 12px;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding-top: 40px;
+    border-top: 1.5px solid var(--border);
+    color: var(--text-light);
+    font-size: 13px;
+  }
+
+  footer a {
+    color: var(--blue);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 640px) {
+    header { margin-bottom: 40px; }
+    h1 { font-size: 32px; }
+    .subtitle { font-size: 15px; }
+    .tool-card { padding: 24px 20px; }
+  }
 </style>
 </head>
-
 <body>
-
 <div class="wrap">
 
   <header>
-    <div class="logo">
-      flapp <span>resources</span>
+    <div class="logo-section">
+      <div class="logo">flapp <span>tools</span></div>
     </div>
-
-    <h1>
-      Recursos para hacer crecer tu <span>eCommerce</span>
-    </h1>
-
-    <p class="subtitle">
-      Herramientas, calculadoras y guías prácticas para optimizar entregas,
-      inventario y operación omnicanal.
-    </p>
+    <h1>Herramientas <span>inteligentes</span> para tu eCommerce</h1>
+    <p class="subtitle">Calcula tu potencial de entrega, optimiza tu operación y toma decisiones basadas en datos reales.</p>
   </header>
 
   <div class="tools-grid">
-
+    
     <a href="/flapp-radio-entrega" class="tool-card">
       <div class="tool-icon">🗺️</div>
       <div class="tool-name">Radio de Entrega</div>
-      <p class="tool-desc">
-        Descubre hasta dónde puedes llegar en menos de 3 horas desde tu tienda y visualiza tu cobertura real en el mapa.
-      </p>
+      <p class="tool-desc">Descubre hasta dónde puedes llegar en 3 horas desde tu tienda. Ve tu radio real de cobertura en el mapa.</p>
       <span class="tool-link">Abrir herramienta →</span>
     </a>
 
     <a href="/cmep.html" class="tool-card">
       <div class="tool-icon">📊</div>
       <div class="tool-name">CMEP</div>
-      <p class="tool-desc">
-        Analiza tu operación, identifica oportunidades de mejora y toma decisiones basadas en datos.
-      </p>
+      <p class="tool-desc">Analiza y optimiza tu operación de eCommerce. Métricas clave para crecer con inteligencia.</p>
       <span class="tool-link">Abrir herramienta →</span>
     </a>
 
     <a href="/cyber2025-ebook.html" class="tool-card">
+      <div class="tool-badge">Nuevo</div>
       <div class="tool-icon">📖</div>
       <div class="tool-name">Guía Cyber 2025</div>
-      <p class="tool-desc">
-        Estrategias, checklist y recomendaciones operativas para preparar tu eCommerce para Cyber.
-      </p>
-      <span class="tool-link">Leer guía →</span>
-    </a>
-
-    <a href="/ecomm-guia-vacaciones.html" class="tool-card">
-      <div class="tool-badge">Nuevo</div>
-      <div class="tool-icon">✈️</div>
-      <div class="tool-name">Guía de supervivencia eCommerce 2026</div>
-      <p class="tool-desc">
-        Fechas clave, estacionalidades y recomendaciones para planear inventario, operación y entregas durante las temporadas vacacionales.
-      </p>
-      <span class="tool-link">Leer guía →</span>
+      <p class="tool-desc">Todo lo que necesitas saber para preparar tu eCommerce para el Cyber. Estrategias, checklist y claves operativas.</p>
+      <span class="tool-link">Leer ebook →</span>
     </a>
 
   </div>
 
   <footer>
-    <p>
-      Hecho por
-      <a href="https://weflapp.com" target="_blank">Flapp</a>
-      — Tu tienda es tu centro de distribución.
-    </p>
+    <p>Hecho por <a href="https://weflapp.com" target="_blank">Flapp</a> — Tu tienda es tu centro de distribución</p>
+    <p style="margin-top: 12px; font-size: 12px;">¿Tienes dudas? <a href="https://flapp-tools.netlify.app/flapp_faqs.html" target="_blank">Consulta nuestras FAQs</a></p>
   </footer>
 
 </div>
-
-<!-- HubSpot -->
-<script
-  type="text/javascript"
-  id="hs-script-loader"
-  async
-  defer
-  src="//js-eu1.hs-scripts.com/25094339.js">
-</script>
-
+  <!-- Start of HubSpot Embed Code -->
+<script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/25094339.js"></script>
+<!-- End of HubSpot Embed Code -->
 </body>
 </html>
