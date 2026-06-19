@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Preguntas frecuentes sobre Flapp - Plataforma omnicanal para retailers. Envío express, retiro en tienda, inventario unificado.">
+    <meta name="keywords" content="Flapp FAQs, omnicanal, ship from store, entrega express, retail tech">
+    <title>Preguntas Frecuentes - Flapp | Omnicanalidad para Retailers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            --blue: #0057B8;
+            --blue-dark: #003f8a;
+            --blue-light: #C9EAFB;
+            --white: #ffffff;
+            --off-white: #f4f9fe;
+            --gray-100: #eaf4fc;
+            --gray-200: #d0e8f7;
+            --text-dark: #0a1e35;
+            --text-mid: #2d5478;
+            --text-light: #5a86a8;
+            --border: #c9eafb;
+            --radius: 18px;
+            --radius-sm: 12px;
+            --shadow: 0 4px 24px rgba(0,87,184,0.10);
+            --shadow-lg: 0 8px 40px rgba(0,87,184,0.16);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f4f9fe 0%, #f9fcfe 100%);
+            font-family: 'Onest', sans-serif;
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 40px 24px 80px;
+        }
+
+        main {
+            width: 100%;
+            max-width: 760px;
+        }
+
+        /* Hero */
+        .hero {
+            margin-bottom: 48px;
+        }
+
+        .hero h1 {
+            font-size: clamp(28px, 5vw, 44px);
+            font-weight: 500;
+            line-height: 1.12;
+            color: var(--text-dark);
+            margin-bottom: 14px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 span {
+            color: var(--blue);
+        }
+
+        .hero p {
+            font-size: 16px;
+            color: var(--text-mid);
+            font-weight: 400;
+            line-height: 1.65;
+            max-width: 560px;
+        }
+
+        /* Cluster Navigation */
+        .cluster-nav {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 40px;
+            overflow-x: auto;
+            padding-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .cluster-nav::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .cluster-nav::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .cluster-nav::-webkit-scrollbar-thumb {
+            background: var(--blue-light);
+            border-radius: 2px;
+        }
+
+        .cluster-btn {
+            padding: 8px 16px;
+            border: 1.5px solid var(--border);
+            background-color: var(--white);
+            color: var(--text-mid);
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            font-family: 'Onest', sans-serif;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .cluster-btn:hover {
+            border-color: var(--blue);
+            color: var(--blue);
+            background: var(--gray-100);
+        }
+
+        .cluster-btn.active {
+            background-color: var(--blue);
+            color: var(--white);
+            border-color: var(--blue);
+        }
+
+        /* Cluster Container */
+        .faq-container {
+            display: grid;
+            gap: 2px;
+        }
+
+        .cluster {
+            display: none;
+        }
+
+        .cluster.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cluster-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.09em;
+            margin-bottom: 16px;
+            margin-top: 24px;
+            padding: 0 4px;
+        }
+
+        .cluster:first-child .cluster-title {
+            margin-top: 0;
+        }
+
+        /* FAQ Card */
+        .faq-item {
+            background-color: var(--white);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .faq-item:hover {
+            border-color: var(--blue);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Question Button */
+        .faq-question {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            cursor: pointer;
+            user-select: none;
+            background-color: transparent;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+            font-family: 'Onest', sans-serif;
+            transition: background-color 0.2s ease;
+        }
+
+        .faq-question:hover {
+            background-color: var(--gray-100);
+        }
+
+        .faq-question:focus {
+            outline: 2px solid var(--blue);
+            outline-offset: -2px;
+        }
+
+        .faq-question.active {
+            background-color: #f0f7fa;
+            color: var(--blue);
+        }
+
+        .faq-question-text {
+            flex: 1;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .faq-index {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            background-color: var(--gray-100);
+            color: var(--blue);
+            font-size: 11px;
+            font-weight: 700;
+            border-radius: 6px;
+            line-height: 1;
+        }
+
+        .faq-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            color: var(--blue);
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .faq-question:not(.active) .faq-toggle::after {
+            content: '+';
+        }
+
+        .faq-question.active .faq-toggle::after {
+            content: '−';
+        }
+
+        /* Answer */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            background-color: transparent;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 600px;
+            padding: 0 20px 20px 20px;
+        }
+
+        .faq-answer p {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--text-mid);
+            font-weight: 400;
+        }
+
+        .faq-answer p + p {
+            margin-top: 12px;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            body {
+                padding: 32px 16px 60px;
+            }
+
+            .hero {
+                margin-bottom: 32px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            .cluster-nav {
+                gap: 6px;
+                margin-bottom: 32px;
+            }
+
+            .cluster-btn {
+                padding: 6px 12px;
+                font-size: 11px;
+            }
+
+            .faq-question {
+                padding: 16px;
+                font-size: 13px;
+                gap: 10px;
+            }
+
+            .faq-answer {
+                font-size: 13px;
+            }
+
+            .faq-item.open .faq-answer {
+                padding: 0 16px 16px 16px;
+            }
+        }
+
+        /* Schema.org helper */
+        .faq-schema {
+            display: none;
+        }
+
+        /* Accessibility */
+        .cluster-btn:focus {
+            outline: 2px solid var(--blue);
+            outline-offset: 2px;
+        }
+
+        /* Footer */
+        footer {
+            width: 100%;
+            max-width: 760px;
+            margin-top: 60px;
+            padding-top: 32px;
+            border-top: 1.5px solid var(--border);
+            text-align: center;
+        }
+
+        .footer-text {
+            font-size: 13px;
+            color: var(--text-light);
+            font-weight: 400;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .footer-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 10px 20px;
+            background-color: var(--blue);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: 'Onest', sans-serif;
+            transition: all 0.2s ease;
+        }
+
+        .footer-link:hover {
+            background-color: var(--blue-dark);
+            transform: translateY(-2px);
+        }
+
+        .footer-link:focus {
+            outline: 2px solid var(--blue);
+            outline-offset: 2px;
+        }
+
+        @media (max-width: 640px) {
+            footer {
+                margin-top: 48px;
+                padding-top: 24px;
+            }
+
+            .footer-text {
+                font-size: 12px;
+            }
+
+            .footer-link {
+                padding: 9px 16px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main role="main">
+        <!-- Hero -->
+        <section class="hero">
+            <h1>Preguntas Frecuentes sobre <span>Flapp</span></h1>
+            <p>Todo lo que necesitas saber sobre cómo Flapp conecta tu ecommerce con tus tiendas físicas para vender más.</p>
+        </section>
+
+        <!-- Cluster Navigation -->
+        <nav class="cluster-nav" role="tablist" aria-label="Filtrar preguntas por tema">
+            <button class="cluster-btn active" data-cluster="cluster-1" role="tab" aria-selected="true">Qué es Flapp</button>
+            <button class="cluster-btn" data-cluster="cluster-2" role="tab" aria-selected="false">Envío Express</button>
+            <button class="cluster-btn" data-cluster="cluster-3" role="tab" aria-selected="false">Checkout</button>
+            <button class="cluster-btn" data-cluster="cluster-4" role="tab" aria-selected="false">Inventario</button>
+            <button class="cluster-btn" data-cluster="cluster-5" role="tab" aria-selected="false">Ship from Store</button>
+            <button class="cluster-btn" data-cluster="cluster-6" role="tab" aria-selected="false">Retiro en Tienda</button>
+            <button class="cluster-btn" data-cluster="cluster-7" role="tab" aria-selected="false">Integraciones</button>
+            <button class="cluster-btn" data-cluster="cluster-8" role="tab" aria-selected="false">Costos y ROI</button>
+        </nav>
+
+        <!-- FAQ Clusters -->
+        <section class="faq-container" role="main">
+
+            <!-- Cluster 1 -->
+            <section id="cluster-1" class="cluster active">
+                <h2 class="cluster-title">Qué es Flapp y para quién es</h2>
+                
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">1</span>
+                            <span>¿Qué hace exactamente Flapp?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Flapp es una plataforma que conecta el inventario de tiendas, bodegas y canales online para que los retailers puedan sincronizar disponibilidad, preparar pedidos desde distintos puntos de origen y ofrecer múltiples opciones de entrega sin reemplazar sus sistemas actuales.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">2</span>
+                            <span>¿Para qué tipo de empresas es Flapp?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Funciona para retailers y marcas con ecommerce que tienen tiendas físicas o bodegas distribuidas geográficamente. Es especialmente útil en moda, belleza, deportes, hogar y categorías con rotación rápida o múltiples variantes de producto.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">3</span>
+                            <span>¿Qué soluciones ofrece Flapp?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>La plataforma habilita envío express, retiro en tienda, pedidos programados, sincronización de inventario, disponibilidad omnicanal, fulfillment desde tienda y pasillo infinito.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">4</span>
+                            <span>¿Flapp reemplaza mi ecommerce, ERP o sistema de inventario?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>No. Flapp funciona como una capa operativa que se integra con tu tecnología actual. No reemplaza el ecommerce, ERP ni sistemas de inventario existentes.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">5</span>
+                            <span>¿Necesito tener tiendas físicas para usar Flapp?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>No es obligatorio, pero las soluciones principales como ship from store, retiro en tienda y disponibilidad por sucursal requieren puntos de stock físicos. También funciona con bodegas bien ubicadas para ofrecer entregas rápidas en zonas de cobertura.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">6</span>
+                            <span>¿En qué países opera Flapp?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Flapp opera en Chile, México, Colombia, Perú y Estados Unidos.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">7</span>
+                            <span>¿Flapp tiene soporte?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Sí, cuenta con equipo de soporte para acompañar operación, resolver dudas y gestionar incidencias.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cluster 2 -->
+            <section id="cluster-2" class="cluster">
+                <h2 class="cluster-title">Envío express, same day y promesa de entrega</h2>
+                
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">8</span>
+                            <span>¿Qué es el envío express de Flapp?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Es un modelo donde los pedidos se preparan desde la tienda o bodega más cercana al cliente para entregarlos en horas. Flapp identifica el punto con disponibilidad, coordina la preparación y habilita la entrega dentro del radio de cobertura.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">9</span>
+                            <span>¿Cómo puedo ofrecer entregas en el mismo día en mi ecommerce?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Conectando tu ecommerce con el inventario de tiendas o bodegas cercanas al cliente. El sistema identifica el punto más conveniente para preparar el pedido, lo que reduce distancias y acelera tiempos de entrega.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">10</span>
+                            <span>¿Cuáles son los tiempos de entrega de Flapp?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Flapp opera en distintas modalidades: express (menos de 3 horas dentro del radio), same day (durante el mismo día), y nacional (3 a 5 días hábiles con partners logísticos).</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">11</span>
+                            <span>¿Cuál es el radio de cobertura del envío express?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Hasta 12 km desde la tienda o bodega. Fuera de ese radio, se activan envíos nacionales a través de couriers.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">12</span>
+                            <span>¿Qué necesita una marca para implementar entrega express?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Un ecommerce activo, stock disponible en tiendas o bodegas bien ubicadas, y operación capaz de preparar pedidos desde esos puntos. Flapp identifica el mejor origen, coordina preparación y activa última milla.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">13</span>
+                            <span>¿Cómo mostrarle al cliente cuándo llegará su pedido antes de comprar?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>El checkout puede mostrar opciones de entrega (express, same day, programada, retiro en tienda) según ubicación del cliente y stock disponible, permitiendo que el cliente tome la decisión con información concreta.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">14</span>
+                            <span>¿Cómo dar visibilidad del pedido al cliente después de la compra?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Flapp entrega tracking en tiempo real, notificaciones de estado y estimaciones actualizadas de llegada, reduciendo incertidumbre post compra.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">15</span>
+                            <span>¿Por qué la certeza de entrega ayuda a vender más?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Cuando el checkout muestra alternativas claras (entrega hoy, retiro en tienda, entrega programada), el cliente tiene más control y menos razones para abandonar la compra.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cluster 3 -->
+            <section id="cluster-3" class="cluster">
+                <h2 class="cluster-title">Checkout, conversión y abandono de carrito</h2>
+                
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">16</span>
+                            <span>¿Cómo ayuda Flapp a reducir carritos abandonados?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Al ofrecer más alternativas de entrega y mayor claridad sobre cuándo llegará el pedido. Cuando el cliente ve opciones concretas, disminuye la fricción en el checkout.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">17</span>
+                            <span>¿Por qué las opciones de entrega influyen en la conversión del ecommerce?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Porque son parte de la decisión final de compra. Si el cliente encuentra costos altos, poca claridad o tiempos poco convenientes, es más probable que abandone. Múltiples opciones reducen esa barrera.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">18</span>
+                            <span>¿Cómo mejorar la conversión del checkout con mejores promesas de entrega?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Mostrando promesas de entrega claras, realistas y conectadas al stock disponible. El checkout puede calcular opciones según ubicación, disponibilidad y punto de preparación.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">19</span>
+                            <span>¿Cómo ofrecer distintas opciones de entrega sin complicar la operación?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>La plataforma centraliza la asignación de pedidos, coordinación de tiendas y activación de partners logísticos, permitiendo ofrecer múltiples modalidades sin gestión manual.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">20</span>
+                            <span>¿Cómo le cobro el envío a mi cliente?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>El costo aparece como ítem separado en el checkout según distancia entre punto de origen y dirección del cliente.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">21</span>
+                            <span>¿Puedo ofrecer envío gratis a mis clientes?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Sí. Puedes configurar envíos gratuitos desde la plataforma y definir subsidios directamente.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">22</span>
+                            <span>¿Qué opciones de entrega puede ofrecer una tienda online con sucursales físicas?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Envío express, same day, envío nacional, retiro en tienda, pedidos programados y disponibilidad por sucursal, todas conectadas al stock disponible.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cluster 4 -->
+            <section id="cluster-4" class="cluster">
+                <h2 class="cluster-title">Inventario omnicanal y disponibilidad</h2>
+                
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">23</span>
+                            <span>¿Cómo vender el inventario de mis tiendas físicas en mi ecommerce?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Sincronizando la disponibilidad de cada sucursal con el canal online. El ecommerce puede consultar inventario centralizado de tiendas y bodegas para mostrar disponibilidad real y preparar pedidos desde el punto más conveniente.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">24</span>
+                            <span>¿Qué es inventario unificado?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Es la conexión del stock disponible en tiendas, bodegas y canales digitales en una sola vista operativa. Permite vender desde cualquier punto de la red, no solo desde una bodega central.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">25</span>
+                            <span>¿Cómo sincronizar inventario entre tiendas físicas y tienda online?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Flapp sincroniza inventarios en tiempo real para que el ecommerce muestre disponibilidad actualizada y pueda asignar pedidos a distintos puntos de origen según stock, cercanía o velocidad.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">26</span>
+                            <span>¿Cómo evitar vender productos que no tienen stock disponible?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Conectando inventario de tiendas y bodegas en tiempo real con el ecommerce. El sistema consulta disponibilidad antes de asignar el pedido y selecciona un punto de cumplimiento con stock.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">27</span>
+                            <span>¿Cómo aprovechar el inventario de tienda para vender más online?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>El stock en tiendas puede estar disponible para ventas online, evitando stock inmovilizado y ampliando la oferta visible en el ecommerce sin depender únicamente de bodega central.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">28</span>
+                            <span>¿Qué es disponibilidad en tienda?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Es mostrar desde el sitio web qué productos están disponibles en cada sucursal. Permite al cliente decidir dónde comprar, dónde retirar o desde dónde puede recibir más rápido.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">29</span>
+                            <span>¿Cómo reducir cancelaciones por falta de stock?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Conectando inventario real de tiendas y bodegas con el ecommerce. El sistema valida disponibilidad antes de asignar el pedido e identifica el punto de preparación más conveniente.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cluster 5 -->
+            <section id="cluster-5" class="cluster">
+                <h2 class="cluster-title">Ship from store, fulfillment desde tienda y pasillo infinito</h2>
+                
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">30</span>
+                            <span>¿Qué es ship from store?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Es un modelo operativo donde las tiendas físicas funcionan como puntos de fulfillment para pedidos online. En lugar de enviar todos los pedidos desde una bodega central, se preparan desde la tienda más conveniente según stock, ubicación y velocidad.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">31</span>
+                            <span>¿Cómo ayuda ship from store a vender más?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Acerca el inventario al cliente. Al preparar desde tiendas cercanas, puedes ofrecer entregas más rápidas, reducir costos logísticos y aumentar disponibilidad online. También mueve inventario que podría quedar detenido en sucursales.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">32</span>
+                            <span>¿Cómo usar mis tiendas como puntos de fulfillment?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Cada tienda puede recibir pedidos asignados, preparar productos, confirmar disponibilidad y coordinar entrega o retiro desde una plataforma centralizada, convirtiendo sucursales en nodos activos de la operación ecommerce.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">33</span>
+                            <span>¿Cómo saber desde qué tienda conviene preparar cada pedido?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Flapp identifica el mejor punto de origen según disponibilidad de stock, cercanía al cliente, velocidad de entrega y eficiencia operativa para cumplir la promesa de entrega.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">34</span>
+                            <span>¿Qué pasa si una tienda no puede preparar un pedido online?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>La operación se reasigna a otro punto con stock disponible. Esto reduce cancelaciones y mantiene una experiencia de compra más confiable.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">35</span>
+                            <span>¿Qué es pasillo infinito?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Permite ofrecer todo el catálogo disponible de la red aunque un producto no esté en una tienda específica. Si un cliente no encuentra un producto en una sucursal, puede acceder al inventario de otras tiendas o bodegas, recuperando la venta.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">36</span>
+                            <span>¿Cómo ayuda pasillo infinito a recuperar ventas en tienda?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Cuando un producto no está disponible en una sucursal específica pero existe en otra tienda o bodega, la marca puede ofrecer el producto desde ese otro punto de stock y coordinar su entrega o retiro.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cluster 6 -->
+            <section id="cluster-6" class="cluster">
+                <h2 class="cluster-title">Retiro en tienda y pedidos programados</h2>
+                
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">37</span>
+                            <span>¿Cómo ofrecer retiro en tienda desde mi ecommerce?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>El cliente selecciona la tienda más cercana desde el ecommerce, realiza la compra y recibe una notificación cuando el pedido está listo. Si el producto ya está en tienda, el retiro puede ser inmediato. Si está en bodega, se coordina según disponibilidad.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">38</span>
+                            <span>¿Por qué ofrecer retiro en tienda puede mejorar la conversión?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Ofrece una opción rápida, clara y sin costo de envío. Reduce fricción en el checkout, aumenta la certeza de entrega y puede generar tráfico adicional a la tienda.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">39</span>
+                            <span>¿Qué son los pedidos programados?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Permiten que el cliente elija una fecha y ventana horaria para recibir su compra directamente desde el checkout. La tienda prepara el pedido con anticipación y coordina la entrega dentro de la ventana seleccionada.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">40</span>
+                            <span>¿Cuándo conviene ofrecer pedidos programados?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Cuando el cliente necesita certeza de horario, cuando la operación tiene alta demanda, o cuando la marca vende productos que requieren mayor planeación. También organiza mejor la preparación de pedidos y reduce intentos fallidos de entrega.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cluster 7 -->
+            <section id="cluster-7" class="cluster">
+                <h2 class="cluster-title">Integraciones, marketplaces e implementación</h2>
+                
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">41</span>
+                            <span>¿Cómo funciona la integración con mi ecommerce?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Flapp se integra con Shopify, WooCommerce, VTEX, Magento y PrestaShop. El equipo coordina la integración sin detener la operación.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">42</span>
+                            <span>¿Puedo ofrecer entrega en horas si tengo Shopify, VTEX, Magento o WooCommerce?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Sí. Flapp se integra con esas plataformas para habilitar envío express, retiro en tienda, pedidos programados e inventario unificado según tu operación y cobertura.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">43</span>
+                            <span>¿Cuánto tiempo toma implementar Flapp?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>La integración puede avanzar en horas y en pocas semanas el equipo puede estar operando. Los tiempos dependen de la complejidad del ecommerce, número de tiendas, integraciones y configuración.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">44</span>
+                            <span>¿Flapp se integra con marketplaces?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Sí. Flapp permite integrar marketplaces manteniendo control de catálogo, inventario y pedidos desde tu red. En Chile cuenta con integración con Uber Eats, PedidosYa y Falabella Marketplace.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">45</span>
+                            <span>¿Flapp reemplaza mi paquetería o se integra con mis couriers actuales?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Flapp no es una paquetería ni reemplaza necesariamente tus couriers. Coordina la operación de fulfillment y última milla a través de partners logísticos e integraciones según cobertura y necesidades.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">46</span>
+                            <span>¿Flapp tiene flota propia?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>No. Flapp trabaja con distintos partners logísticos. El courier retira desde tu tienda o bodega mientras Flapp coordina la operación, trazabilidad y experiencia.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cluster 8 -->
+            <section id="cluster-8" class="cluster">
+                <h2 class="cluster-title">Costos, comisiones, operación y ROI</h2>
+                
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">47</span>
+                            <span>¿Flapp cobra comisión por pedido?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>El modelo de Flapp no está basado en comisiones de marketplace. Trabaja con esquemas adaptados al volumen y características de cada operación.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">48</span>
+                            <span>¿Cómo ayuda Flapp a reducir costos de última milla?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Al enviar desde la tienda o bodega más cercana. Reduce trayectos largos, disminuye presión sobre bodega central y permite opciones como retiro en tienda que reducen costos de envío.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">49</span>
+                            <span>¿Qué pasa si un pedido se pierde, roba o daña?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Los pedidos cuentan con cobertura hasta cierto monto. Flapp ofrece seguimiento en tiempo real y soporte para gestionar incidencias.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">50</span>
+                            <span>¿Qué métricas debería mejorar una marca al implementar Flapp?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Conversión del checkout, abandono de carrito, velocidad de entrega, entregas on time, costo de última milla, disponibilidad de inventario, cancelaciones por falta de stock, experiencia post compra, rotación de inventario en tienda y presión operativa sobre bodegas.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">51</span>
+                            <span>¿Cómo saber si Flapp es adecuado para mi operación?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Si vendes online, tienes tiendas físicas o puntos de stock, quieres ofrecer entregas más rápidas, buscas reducir abandono en checkout y necesitas conectar inventario, fulfillment y última milla en una operación.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" role="button" aria-expanded="false">
+                        <div class="faq-question-text">
+                            <span class="faq-index">52</span>
+                            <span>¿Qué diferencia a Flapp de una solución logística tradicional?</span>
+                        </div>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <p>Una solución logística tradicional mueve pedidos de un punto a otro. Flapp conecta inventario, tiendas, ecommerce, opciones de entrega y cumplimiento en la misma capa operativa. La logística es una herramienta para mejorar conversión y disponibilidad, no solo un costo.</p>
+                    </div>
+                </div>
+            </section>
+
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p class="footer-text">¿Tienes más preguntas? Conoce más sobre Flapp</p>
+            <a href="https://weflapp.com" target="_blank" rel="noopener noreferrer" class="footer-link">
+                Ir a weflapp.com
+                <span style="font-size: 14px;">↗</span>
+            </a>
+        </footer>
+    </main>
+
+    <!-- Schema.org FAQPage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {"@type": "Question", "name": "¿Qué hace exactamente Flapp?", "acceptedAnswer": {"@type": "Answer", "text": "Flapp es una plataforma que conecta el inventario de tiendas, bodegas y canales online para que los retailers puedan sincronizar disponibilidad, preparar pedidos desde distintos puntos de origen y ofrecer múltiples opciones de entrega sin reemplazar sus sistemas actuales."}},
+            {"@type": "Question", "name": "¿Qué es el envío express de Flapp?", "acceptedAnswer": {"@type": "Answer", "text": "Es un modelo donde los pedidos se preparan desde la tienda o bodega más cercana al cliente para entregarlos en horas. Flapp identifica el punto con disponibilidad, coordina la preparación y habilita la entrega dentro del radio de cobertura."}},
+            {"@type": "Question", "name": "¿Qué es ship from store?", "acceptedAnswer": {"@type": "Answer", "text": "Es un modelo operativo donde las tiendas físicas funcionan como puntos de fulfillment para pedidos online. En lugar de enviar todos los pedidos desde una bodega central, se preparan desde la tienda más conveniente según stock, ubicación y velocidad."}}
+        ]
+    }
+    </script>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // FAQ Accordion
+            const questions = document.querySelectorAll('.faq-question');
+            
+            questions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const faqItem = this.closest('.faq-item');
+                    const isOpen = faqItem.classList.contains('open');
+                    
+                    // Close all other FAQs
+                    document.querySelectorAll('.faq-item.open').forEach(item => {
+                        if (item !== faqItem) {
+                            item.classList.remove('open');
+                            item.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                        }
+                    });
+                    
+                    // Toggle current
+                    faqItem.classList.toggle('open');
+                    this.setAttribute('aria-expanded', !isOpen);
+                });
+            });
+
+            // Cluster Navigation
+            const clusterButtons = document.querySelectorAll('.cluster-btn');
+            
+            clusterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const clusterId = this.getAttribute('data-cluster');
+                    
+                    // Update buttons
+                    clusterButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                        btn.setAttribute('aria-selected', 'false');
+                    });
+                    this.classList.add('active');
+                    this.setAttribute('aria-selected', 'true');
+                    
+                    // Update clusters
+                    document.querySelectorAll('.cluster').forEach(cluster => {
+                        cluster.classList.remove('active');
+                    });
+                    document.getElementById(clusterId).classList.add('active');
+                    
+                    // Close all FAQs
+                    document.querySelectorAll('.faq-item.open').forEach(item => {
+                        item.classList.remove('open');
+                        item.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                    });
+                    
+                    // Scroll
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+        });
+    </script>
+
+    <!-- HubSpot -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/25094339.js"></script>
+</body>
+</html>
