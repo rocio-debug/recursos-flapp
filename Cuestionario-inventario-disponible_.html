@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>¿Tu eCommerce ve lo que tienes en tiendas? — Flapp</title>
+
+<!-- SEO básico -->
+<meta name="description" content="5 preguntas para saber si tu canal online está viendo el stock real de tus tiendas físicas — y cuánto te está costando la desconexión."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://weflapp.com/diagnostico-inventario"/>
+
+<!-- Open Graph -->
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="¿Tu eCommerce ve lo que tienes en tiendas? — Flapp"/>
+<meta property="og:description" content="Diagnóstico gratuito: 5 preguntas para detectar brechas de visibilidad entre tu inventario físico y tu canal online."/>
+<meta property="og:url" content="https://weflapp.com/diagnostico-inventario"/>
+<meta property="og:site_name" content="Flapp"/>
+<meta property="og:locale" content="es_MX"/>
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="¿Tu eCommerce ve lo que tienes en tiendas? — Flapp"/>
+<meta name="twitter:description" content="5 preguntas para saber si estás perdiendo ventas por stock invisible en tiendas físicas."/>
+
+<!-- Schema.org: WebApplication -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Diagnóstico de visibilidad de inventario — Flapp",
+  "url": "https://weflapp.com/diagnostico-inventario",
+  "description": "Herramienta de diagnóstico para retailers: 5 preguntas para identificar brechas entre el inventario de tiendas físicas y el canal eCommerce.",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "All",
+  "inLanguage": "es",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "MXN"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Flapp",
+    "url": "https://weflapp.com"
+  }
+}
+</script>
+
+<!-- Schema.org: FAQPage (AEO) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Con qué frecuencia se debería actualizar el stock en un eCommerce?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lo ideal es sincronización en tiempo real y automática. Actualizar cada pocas horas genera ventanas de riesgo: una venta en tienda puede no reflejarse hasta horas después. La actualización manual o diaria es la causa más común de órdenes canceladas por falta de stock real."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuánto tiempo debería tardar en reflejarse en el eCommerce cuando una tienda vende la última unidad?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El tiempo ideal es menos de 5 minutos. Una sincronización entre 30 minutos y pocas horas ya genera conflictos en operaciones con tráfico activo en tienda. Sin certeza del tiempo de sincronización, cualquier promesa de disponibilidad es un estimado."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuántas cancelaciones de pedidos por falta de stock son aceptables en eCommerce?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El benchmark para operaciones bien sincronizadas es menos del 2%. Entre 2% y 8% tiene costo directo: el 47% de esos clientes no regresa al sitio. Más del 8% representa revenue perdido y confianza erosionada en cada cancelación."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué pasa si hay productos marcados como sin stock en el eCommerce pero existen en tiendas físicas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Los SKUs invisibles son ventas perdidas silenciosas. El cliente ve 'agotado' y se va sin saber que el producto existe en tienda. El stock invisible recurrente es capital inmovilizado que no rota y clientes que se van con la competencia."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Debería un eCommerce mostrar disponibilidad por tienda o solo un total global?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La visibilidad por tienda o punto de origen permite prometer desde dónde se despacha con certeza. Sin desglose por tienda, asignar el pedido al origen correcto depende de procesos manuales. Sin visibilidad de dónde está el stock, la promesa de entrega no puede ser concreta."
+      }
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --blue: #0057B8;
+    --blue-dark: #003f8a;
+    --blue-light: #C9EAFB;
+    --white: #ffffff;
+    --off-white: #f4f9fe;
+    --gray-100: #eaf4fc;
+    --gray-200: #d0e8f7;
+    --text-dark: #0a1e35;
+    --text-mid: #2d5478;
+    --text-light: #5a86a8;
+    --border: #c9eafb;
+    --radius: 18px;
+    --radius-sm: 12px;
+    --shadow: 0 4px 24px rgba(0,87,184,0.10);
+    --shadow-lg: 0 8px 40px rgba(0,87,184,0.16);
+    --green: #1D9E75;
+    --green-light: #e6f7f2;
+    --yellow: #d97706;
+    --yellow-light: #fffbeb;
+    --red: #c0002e;
+    --red-light: #fff0f2;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--off-white);
+    color: var(--text-dark);
+    font-family: 'Onest', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 52px 24px 80px;
+  }
+  .wrap { width: 100%; max-width: 720px; }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--blue-light);
+    border: 1.5px solid var(--blue);
+    border-radius: 100px;
+    padding: 5px 16px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--blue);
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .badge-dot {
+    width: 7px; height: 7px;
+    background: var(--blue);
+    border-radius: 50%;
+    animation: badgePulse 2s ease-in-out infinite;
+  }
+  @keyframes badgePulse {
+    0%,100% { opacity:1; transform:scale(1); }
+    50% { opacity:0.35; transform:scale(0.6); }
+  }
+  h1 {
+    font-size: clamp(26px, 5vw, 40px);
+    font-weight: 500;
+    line-height: 1.12;
+    color: var(--text-dark);
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+  h1 span { color: var(--blue); }
+  .subtitle {
+    font-size: 15px;
+    color: var(--text-mid);
+    font-weight: 400;
+    line-height: 1.65;
+    max-width: 560px;
+    margin-bottom: 36px;
+  }
+
+  /* Progress */
+  .progress-wrap { margin-bottom: 28px; }
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--text-light);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .progress-bg {
+    height: 4px;
+    background: var(--gray-200);
+    border-radius: 4px;
+  }
+  .progress-fill {
+    height: 4px;
+    border-radius: 4px;
+    background: var(--blue);
+    width: 0%;
+    transition: width 0.3s ease;
+  }
+
+  /* Cards de pregunta */
+  .q-card {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow);
+    transition: border-color 0.2s;
+  }
+  .q-card.answered { border-color: var(--blue); }
+  .q-num {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    margin-bottom: 8px;
+  }
+  .q-text {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-dark);
+    line-height: 1.45;
+    margin-bottom: 16px;
+  }
+  .opts { display: flex; flex-wrap: wrap; gap: 8px; }
+  .opt {
+    border: 1.5px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    padding: 9px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'Onest', sans-serif;
+    cursor: pointer;
+    background: var(--off-white);
+    color: var(--text-mid);
+    transition: all 0.15s;
+    line-height: 1.3;
+  }
+  .opt:hover { border-color: var(--blue); color: var(--blue); background: var(--gray-100); }
+  .opt.sel-ok { background: var(--green-light); border-color: var(--green); color: var(--green); }
+  .opt.sel-warn { background: var(--yellow-light); border-color: #f5d878; color: var(--yellow); }
+  .opt.sel-bad { background: var(--red-light); border-color: #ffb3be; color: var(--red); }
+
+  /* Resultado */
+  #result { display: none; animation: fadeUp 0.4s ease; }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+
+  .result-card {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow);
+  }
+  .result-badge {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 14px;
+    border-radius: 100px;
+    margin-bottom: 12px;
+    letter-spacing: 0.04em;
+  }
+  .rb-ok { background: var(--green-light); color: var(--green); border: 1.5px solid var(--green); }
+  .rb-warn { background: var(--yellow-light); color: var(--yellow); border: 1.5px solid #f5d878; }
+  .rb-bad { background: var(--red-light); color: var(--red); border: 1.5px solid #ffb3be; }
+
+  .result-title {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  .result-desc {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.65;
+    margin-bottom: 20px;
+  }
+  .findings { list-style: none; border-top: 1.5px solid var(--border); padding-top: 16px; }
+  .findings li {
+    display: flex;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--text-mid);
+    padding: 8px 0;
+    border-bottom: 1px solid var(--gray-100);
+    line-height: 1.5;
+  }
+  .findings li:last-child { border-bottom: none; }
+  .finding-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    white-space: nowrap;
+    padding-top: 1px;
+    min-width: 140px;
+  }
+
+  /* CTA */
+  .cta-box {
+    background: var(--blue);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    box-shadow: var(--shadow-lg);
+  }
+  .cta-headline { font-size: 18px; font-weight: 500; color: var(--white); margin-bottom: 5px; letter-spacing: -0.01em; }
+  .cta-sub { font-size: 13px; color: var(--blue-light); font-weight: 400; }
+  .cta-btn {
+    background: var(--white);
+    color: var(--blue);
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 13px 26px;
+    font-family: 'Onest', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cta-btn:hover { background: var(--blue-light); transform: translateY(-1px); }
+
+  @media (max-width: 520px) {
+    body { padding: 32px 16px 60px; }
+    .q-card { padding: 20px 18px; }
+    .result-card { padding: 22px 18px; }
+    .cta-box { flex-direction: column; align-items: flex-start; }
+    .cta-btn { width: 100%; text-align: center; }
+    .finding-label { min-width: 110px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="badge"><span class="badge-dot"></span>Diagnóstico · Flapp</div>
+  <h1>¿Tu eCommerce ve lo que<br/><span>realmente tienes</span> en tiendas?</h1>
+  <p class="subtitle">5 preguntas para saber si hay stock disponible que tu canal online no está viendo — y cuánto te está costando.</p>
+
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span id="prog-text">0 de 5 preguntas</span>
+      <span id="prog-pct">0%</span>
+    </div>
+    <div class="progress-bg"><div class="progress-fill" id="prog-fill"></div></div>
+  </div>
+
+  <div class="q-card" id="q0">
+    <div class="q-num">Pregunta 1 de 5</div>
+    <div class="q-text">¿Con qué frecuencia se actualiza el stock en tu eCommerce?</div>
+    <div class="opts">
+      <button class="opt" onclick="pick(0,'ok',this)">En tiempo real, automático</button>
+      <button class="opt" onclick="pick(0,'warn',this)">Cada pocas horas</button>
+      <button class="opt" onclick="pick(0,'bad',this)">Una vez al día o manual</button>
+    </div>
+  </div>
+
+  <div class="q-card" id="q1">
+    <div class="q-num">Pregunta 2 de 5</div>
+    <div class="q-text">Cuando una tienda vende la última unidad en caja, ¿cuánto tarda en reflejarse en tu eCommerce?</div>
+    <div class="opts">
+      <button class="opt" onclick="pick(1,'ok',this)">Menos de 5 minutos</button>
+      <button class="opt" onclick="pick(1,'warn',this)">Entre 30 min y pocas horas</button>
+      <button class="opt" onclick="pick(1,'bad',this)">No lo sé con certeza</button>
+    </div>
+  </div>
+
+  <div class="q-card" id="q2">
+    <div class="q-num">Pregunta 3 de 5</div>
+    <div class="q-text">¿Cuántos pedidos se cancelaron el último mes porque el stock no estaba disponible al preparar?</div>
+    <div class="opts">
+      <button class="opt" onclick="pick(2,'ok',this)">Menos del 2%</button>
+      <button class="opt" onclick="pick(2,'warn',this)">Entre 2% y 8%</button>
+      <button class="opt" onclick="pick(2,'bad',this)">Más del 8% — o no lo medimos</button>
+    </div>
+  </div>
+
+  <div class="q-card" id="q3">
+    <div class="q-num">Pregunta 4 de 5</div>
+    <div class="q-text">¿Tienes productos marcados como "sin stock" en tu sitio que sí existen en alguna tienda física?</div>
+    <div class="opts">
+      <button class="opt" onclick="pick(3,'ok',this)">No, el catálogo es preciso</button>
+      <button class="opt" onclick="pick(3,'warn',this)">Probablemente sí, algunos SKUs</button>
+      <button class="opt" onclick="pick(3,'bad',this)">Sí, es un problema recurrente</button>
+    </div>
+  </div>
+
+  <div class="q-card" id="q4">
+    <div class="q-num">Pregunta 5 de 5</div>
+    <div class="q-text">¿Tu eCommerce muestra disponibilidad por tienda o solo un total global?</div>
+    <div class="opts">
+      <button class="opt" onclick="pick(4,'ok',this)">Por tienda o punto de origen</button>
+      <button class="opt" onclick="pick(4,'warn',this)">Total global, sin desglose</button>
+      <button class="opt" onclick="pick(4,'bad',this)">No tenemos esa visibilidad</button>
+    </div>
+  </div>
+
+  <div id="result">
+    <div class="result-card">
+      <span class="result-badge" id="res-badge"></span>
+      <div class="result-title" id="res-title"></div>
+      <div class="result-desc" id="res-desc"></div>
+      <ul class="findings" id="res-findings"></ul>
+    </div>
+    <div class="cta-box">
+      <div>
+        <div class="cta-headline">Tu inventario ya existe. Solo hay que conectarlo.</div>
+        <div class="cta-sub">Flapp sincroniza el stock de tus tiendas físicas con tu canal online — sin reemplazar lo que ya tienes.</div>
+      </div>
+      <a class="cta-btn" href="https://weflapp.com" target="_blank">Ver cómo funciona ↗</a>
+    </div>
+  </div>
+
+</div>
+<script>
+var ans = {};
+var pts = { ok: 0, warn: 1, bad: 2 };
+var labels = ['Actualización de stock','Sincronización en tienda','Cancelaciones por stock','Catálogo online','Visibilidad por tienda'];
+var msgs = {
+  0: {
+    ok: 'Tiempo real — la base para que tus promesas en checkout sean confiables.',
+    warn: 'Actualizar cada pocas horas genera ventanas de riesgo. Una venta en tienda puede no reflejarse hasta horas después.',
+    bad: 'Actualización manual o diaria es la causa más común de órdenes canceladas por falta de stock real.'
+  },
+  1: {
+    ok: 'Sincronización inmediata elimina el riesgo de prometer lo que ya se vendió en tienda.',
+    warn: '30 minutos a pocas horas es suficiente para generar conflictos en operaciones con tráfico activo en tienda.',
+    bad: 'Sin certeza del tiempo de sincronización, cualquier promesa de disponibilidad es un estimado.'
+  },
+  2: {
+    ok: 'Menos del 2% — benchmark de operaciones con inventario bien sincronizado.',
+    warn: '2–8% de cancelaciones tiene costo directo: el 47% de esos clientes no regresa al sitio.',
+    bad: 'Más del 8% o sin medición — revenue perdido y confianza erosionada en cada cancelación.'
+  },
+  3: {
+    ok: 'Catálogo preciso — no estás perdiendo ventas por stock invisible en tiendas.',
+    warn: 'SKUs invisibles son ventas perdidas silenciosas. El cliente ve "agotado" y se va sin saber que el producto existe.',
+    bad: 'Stock invisible recurrente es capital inmovilizado que no rota y clientes que se van con la competencia.'
+  },
+  4: {
+    ok: 'Visibilidad por tienda te permite prometer desde dónde despachas — y hacerlo con certeza.',
+    warn: 'Sin desglose por tienda, asignar el pedido al origen correcto depende de procesos manuales.',
+    bad: 'Sin visibilidad de dónde está el stock, la promesa de entrega no puede ser concreta.'
+  }
+};
+
+function pick(idx, level, btn) {
+  ans[idx] = level;
+  var card = document.getElementById('q' + idx);
+  card.classList.add('answered');
+  card.querySelectorAll('.opt').forEach(function(b) {
+    b.classList.remove('sel-ok','sel-warn','sel-bad');
+  });
+  btn.classList.add('sel-' + level);
+  var n = Object.keys(ans).length;
+  var pct = Math.round(n / 5 * 100);
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('prog-text').textContent = n + ' de 5 preguntas';
+  document.getElementById('prog-pct').textContent = pct + '%';
+  if (n === 5) showResult();
+}
+
+function showResult() {
+  var total = 0;
+  Object.values(ans).forEach(function(v) { total += pts[v]; });
+  var badge, badgeClass, title, desc;
+  if (total <= 2) {
+    badge = 'Visibilidad sólida'; badgeClass = 'rb-ok';
+    title = 'Tu inventario está bien conectado';
+    desc = 'Buen punto de partida. El foco ahora es mantener esa precisión bajo picos de demanda y temporadas altas — cuando el volumen en tienda sube y los desfases se amplifican.';
+  } else if (total <= 5) {
+    badge = 'Brechas de visibilidad'; badgeClass = 'rb-warn';
+    title = 'Hay desfases que cuestan ventas';
+    desc = 'Algunos puntos del flujo generan diferencias entre lo que tienes y lo que el cliente ve. Cada uno es una venta perdida en silencio — sin queja, sin dato visible, sin que nadie lo reporte.';
+  } else {
+    badge = 'Riesgo alto'; badgeClass = 'rb-bad';
+    title = 'La desconexión tiene costo diario';
+    desc = 'La brecha entre tus tiendas y tu canal online probablemente te está costando ventas todos los días — sin que aparezca claramente en ningún reporte. El problema no es el inventario: es la visibilidad de ese inventario.';
+  }
+  document.getElementById('res-badge').textContent = badge;
+  document.getElementById('res-badge').className = 'result-badge ' + badgeClass;
+  document.getElementById('res-title').textContent = title;
+  document.getElementById('res-desc').textContent = desc;
+  var ul = document.getElementById('res-findings');
+  ul.innerHTML = '';
+  Object.entries(ans).forEach(function(e) {
+    var li = document.createElement('li');
+    li.innerHTML = '<span class="finding-label">' + labels[e[0]] + '</span><span>' + msgs[e[0]][e[1]] + '</span>';
+    ul.appendChild(li);
+  });
+  var res = document.getElementById('result');
+  res.style.display = 'block';
+  setTimeout(function() { res.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 100);
+}
+</script>
+</body>
+</html>
