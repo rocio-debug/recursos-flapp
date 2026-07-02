@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Qué es Flapp y cómo funciona — Ship from store, fulfillment omnicanal y más</title>
+
+<!-- SEO -->
+<meta name="description" content="Flapp no es un courier ni un OMS. Es la capa tecnológica que conecta eCommerce, tiendas físicas e inventario para que los retailers vendan más usando el stock que ya tienen."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://flapp-tools.netlify.app/flapp-que-es-como-funciona.html"/>
+
+<!-- Open Graph -->
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="Qué es Flapp — Ship from store, fulfillment omnicanal y reducción de carritos abandonados"/>
+<meta property="og:description" content="Flapp no es un courier. Es la capa que conecta eCommerce, tiendas e inventario para que retailers vendan más con el stock que ya tienen."/>
+<meta property="og:url" content="https://flapp-tools.netlify.app/flapp-que-es-como-funciona.html"/>
+<meta property="og:site_name" content="Flapp"/>
+<meta property="og:locale" content="es_MX"/>
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Qué es Flapp — Ship from store y fulfillment omnicanal"/>
+<meta name="twitter:description" content="Flapp no es un courier ni un CRM. Es la capa que conecta eCommerce, tiendas físicas e inventario."/>
+
+<!-- Favicon -->
+<link rel="icon" href="/favicon.png" type="image/png"/>
+
+<!-- Schema.org: Article -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Qué es Flapp y cómo funciona: ship from store, fulfillment omnicanal y reducción de carritos abandonados",
+  "description": "Flapp no es un courier ni un OMS. Es la capa tecnológica que conecta eCommerce, tiendas físicas e inventario para que los retailers vendan más usando el stock que ya tienen.",
+  "url": "https://flapp-tools.netlify.app/flapp-que-es-como-funciona.html",
+  "inLanguage": "es",
+  "author": {
+    "@type": "Organization",
+    "name": "Flapp",
+    "url": "https://weflapp.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Flapp",
+    "url": "https://weflapp.com"
+  },
+  "datePublished": "2026-07-02",
+  "dateModified": "2026-07-02",
+  "about": [
+    { "@type": "Thing", "name": "Ship from store" },
+    { "@type": "Thing", "name": "Fulfillment omnicanal" },
+    { "@type": "Thing", "name": "eCommerce" },
+    { "@type": "Thing", "name": "Inventario omnicanal" }
+  ]
+}
+</script>
+
+<!-- Schema.org: FAQPage (AEO) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué es Flapp?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Flapp es una plataforma SaaS omnicanal para retailers y marcas con eCommerce. Conecta el canal de ventas online con las tiendas físicas para sincronizar inventario y permitir que las tiendas participen activamente en el cumplimiento de pedidos. No es un courier ni una empresa de logística: es la capa tecnológica que orquesta desde dónde se despacha cada pedido según ubicación, stock disponible y promesa de entrega."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Flapp es un courier?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Flapp no transporta paquetes ni opera última milla. Es la capa tecnológica que decide desde qué tienda o bodega conviene despachar cada pedido, y luego coordina con los couriers aliados disponibles. La diferencia es importante: un courier mueve un paquete de A a B; Flapp decide qué es A, en función del inventario, la ubicación del cliente y la promesa de entrega."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Flapp es un OMS (Order Management System)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Flapp tiene capacidades de orquestación de pedidos, pero no es un OMS tradicional. Un OMS centraliza la gestión de órdenes de múltiples canales. Flapp va un paso más allá: conecta el inventario físico de las tiendas con el canal de eCommerce y decide la mejor forma de cumplir cada pedido desde los orígenes disponibles. Opera sobre el OMS o en conjunto con él, no lo reemplaza."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué es ship from store y por qué importa en retail?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ship from store es la práctica de despachar pedidos de eCommerce directamente desde tiendas físicas, en lugar de hacerlo desde una bodega central. Importa porque la mayoría de los retailers ya tiene inventario distribuido en su red de tiendas. Usar esas tiendas como puntos de despacho reduce los tiempos de entrega (de días a horas), aprovecha stock que de otra forma permanece inmovilizado y disminuye la dependencia de un solo centro de distribución."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo ayuda Flapp a reducir carritos abandonados?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Aproximadamente 3 de cada 4 carritos se abandonan por razones relacionadas con la entrega: falta de opciones, costos de envío altos o incertidumbre sobre cuándo llegará el pedido. Flapp permite mostrar más opciones en el checkout (entrega express, retiro en tienda, entrega programada) y mostrar disponibilidad real de stock por tienda. Tener más opciones y mayor certeza reduce el abandono. En casos documentados, retailers han bajado su tasa de abandono del 67% al 47% activando estas capacidades."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuál es la diferencia entre Flapp y una plataforma de eCommerce como Shopify o VTEX?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Shopify, VTEX y similares son la tienda online: gestionan el catálogo, el checkout y la experiencia de compra. Flapp no compite con ellas ni las reemplaza. Se conecta a ellas para agregar la capa de fulfillment omnicanal: sincroniza el inventario de tiendas físicas, orquesta desde dónde despachar y habilita opciones de entrega que la plataforma de eCommerce sola no puede ofrecer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Flapp es un CRM o un chatbot?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Flapp no gestiona relaciones con clientes ni automatiza conversaciones. Es una plataforma de fulfillment omnicanal: su función es conectar el inventario de tiendas físicas con el canal de eCommerce para que los pedidos se cumplan desde el origen correcto, en el menor tiempo posible."
+      }
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+
+<style>
+  :root {
+    --blue: #0057B8;
+    --blue-dark: #003f8a;
+    --blue-light: #C9EAFB;
+    --white: #ffffff;
+    --off-white: #f4f9fe;
+    --gray-100: #eaf4fc;
+    --gray-200: #d0e8f7;
+    --neutral: #EEF2F6;
+    --text-dark: #0a1e35;
+    --text-mid: #2d5478;
+    --text-light: #5a86a8;
+    --border: #c9eafb;
+    --radius: 18px;
+    --radius-sm: 12px;
+    --shadow: 0 4px 24px rgba(0,87,184,0.10);
+    --shadow-lg: 0 8px 40px rgba(0,87,184,0.16);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--off-white);
+    color: var(--text-dark);
+    font-family: 'Onest', sans-serif;
+    min-height: 100vh;
+    padding: 52px 24px 80px;
+  }
+  .wrap { width: 100%; max-width: 740px; margin: 0 auto; }
+
+  /* Badge */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--blue-light);
+    border: 1.5px solid var(--blue);
+    border-radius: 100px;
+    padding: 5px 16px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--blue);
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .badge-dot {
+    width: 7px; height: 7px;
+    background: var(--blue);
+    border-radius: 50%;
+  }
+
+  /* Hero */
+  h1 {
+    font-size: clamp(26px, 5vw, 42px);
+    font-weight: 500;
+    line-height: 1.1;
+    color: var(--text-dark);
+    margin-bottom: 14px;
+    letter-spacing: -0.02em;
+  }
+  h1 span { color: var(--blue); }
+  .intro {
+    font-size: 16px;
+    color: var(--text-mid);
+    line-height: 1.7;
+    max-width: 600px;
+    margin-bottom: 12px;
+  }
+
+  /* Índice */
+  .toc {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 32px 0 40px;
+    box-shadow: var(--shadow);
+  }
+  .toc-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    margin-bottom: 12px;
+  }
+  .toc ol {
+    padding-left: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .toc li {
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.4;
+  }
+  .toc a {
+    color: var(--blue);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .toc a:hover { text-decoration: underline; }
+
+  /* Secciones */
+  .section { margin-bottom: 48px; }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    margin-bottom: 10px;
+  }
+  h2 {
+    font-size: clamp(20px, 3.5vw, 28px);
+    font-weight: 500;
+    color: var(--text-dark);
+    line-height: 1.2;
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+    scroll-margin-top: 24px;
+  }
+  h2 span { color: var(--blue); }
+
+  .body-text {
+    font-size: 15px;
+    color: var(--text-mid);
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+
+  /* Cards de aclaración "Flapp NO es" */
+  .not-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    margin: 20px 0;
+  }
+  .not-card {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+  }
+  .not-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #c0002e;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 4px;
+  }
+  .not-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+  }
+  .not-desc {
+    font-size: 12px;
+    color: var(--text-light);
+    line-height: 1.5;
+  }
+
+  /* Card azul destacada */
+  .highlight-card {
+    background: var(--blue);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    margin: 20px 0;
+    color: var(--white);
+  }
+  .highlight-card .hc-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(201,234,251,0.8);
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    margin-bottom: 8px;
+  }
+  .highlight-card .hc-text {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--white);
+  }
+  .highlight-card .hc-text strong { font-weight: 600; }
+
+  /* Tabla comparativa */
+  .compare-wrap {
+    overflow-x: auto;
+    margin: 20px 0;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1.5px solid var(--border);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    background: var(--white);
+  }
+  thead tr {
+    background: var(--blue);
+    color: var(--white);
+  }
+  thead th {
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.03em;
+  }
+  tbody tr { border-bottom: 1px solid var(--gray-100); }
+  tbody tr:last-child { border-bottom: none; }
+  tbody td {
+    padding: 12px 16px;
+    color: var(--text-mid);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tbody td:first-child {
+    font-weight: 600;
+    color: var(--text-dark);
+    white-space: nowrap;
+  }
+  tbody tr:nth-child(even) td { background: var(--neutral); }
+
+  /* FAQ items */
+  .faq-list { display: flex; flex-direction: column; gap: 10px; margin: 20px 0; }
+  .faq-item {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .faq-q {
+    padding: 16px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-dark);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    user-select: none;
+  }
+  .faq-q:hover { background: var(--gray-100); }
+  .faq-icon {
+    font-size: 16px;
+    color: var(--blue);
+    flex-shrink: 0;
+    transition: transform 0.2s;
+    margin-top: 1px;
+  }
+  .faq-a {
+    display: none;
+    padding: 0 20px 16px;
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.7;
+    border-top: 1px solid var(--gray-100);
+    margin-top: 0;
+    padding-top: 14px;
+  }
+  .faq-item.open .faq-a { display: block; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+  /* Stat chips */
+  .stats-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0;
+  }
+  .stat-chip {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px 18px;
+    box-shadow: var(--shadow);
+    flex: 1;
+    min-width: 150px;
+  }
+  .stat-num {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--blue);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-light);
+    line-height: 1.4;
+  }
+
+  /* CTA */
+  .cta-box {
+    background: var(--blue);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    box-shadow: var(--shadow-lg);
+    margin-top: 48px;
+  }
+  .cta-headline { font-size: 18px; font-weight: 500; color: var(--white); margin-bottom: 5px; letter-spacing: -0.01em; }
+  .cta-sub { font-size: 13px; color: var(--blue-light); }
+  .cta-btn {
+    background: var(--white);
+    color: var(--blue);
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 13px 26px;
+    font-family: 'Onest', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cta-btn:hover { background: var(--blue-light); transform: translateY(-1px); }
+
+  /* Divider */
+  .divider {
+    border: none;
+    border-top: 1.5px solid var(--border);
+    margin: 40px 0;
+  }
+
+  @media (max-width: 520px) {
+    body { padding: 32px 16px 60px; }
+    .cta-box { flex-direction: column; align-items: flex-start; }
+    .cta-btn { width: 100%; text-align: center; }
+    thead th, tbody td { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="badge"><span class="badge-dot"></span>Recursos · Flapp</div>
+
+  <h1>Flapp no es un courier.<br/><span>Es la capa que conecta todo.</span></h1>
+  <p class="intro">Muchos retailers conocen Flapp por el envío express. Pero la plataforma hace algo más específico: conecta el inventario de tiendas físicas con el canal de eCommerce para que los pedidos se cumplan desde el origen correcto. Esta página explica qué significa eso en la práctica.</p>
+
+  <!-- Índice -->
+  <nav class="toc" aria-label="Contenido">
+    <div class="toc-title">En esta página</div>
+    <ol>
+      <li><a href="#que-es-flapp">Qué es Flapp (y qué no es)</a></li>
+      <li><a href="#ship-from-store">Qué es ship from store y por qué importa</a></li>
+      <li><a href="#carritos">Cómo reducir carritos abandonados con mejores opciones de entrega</a></li>
+      <li><a href="#comparativa">Flapp vs. OMS vs. courier vs. plataforma de eCommerce</a></li>
+      <li><a href="#no-es">Flapp no es courier, CRM ni chatbot</a></li>
+    </ol>
+  </nav>
+
+  <!-- SECCIÓN 1 -->
+  <section class="section" id="que-es-flapp">
+    <div class="section-label">01 — Definición</div>
+    <h2>Qué es Flapp <span>(y qué no es)</span></h2>
+    <p class="body-text">Flapp es una plataforma SaaS omnicanal para retailers y marcas con eCommerce. Su función principal es conectar el canal de ventas online con las tiendas físicas: sincroniza el inventario disponible en cada tienda y decide, pedido a pedido, desde dónde conviene despachar según la ubicación del cliente, el stock disponible y la promesa de entrega.</p>
+    <p class="body-text">La mayoría de los eCommerce operan desde un solo origen: todo sale de una bodega centralizada, muchas veces a cientos de kilómetros del cliente, aunque el retailer tenga tiendas físicas mucho más cerca. Flapp cambia esa lógica.</p>
+
+    <div class="highlight-card">
+      <div class="hc-label">En una frase</div>
+      <div class="hc-text"><strong>Flapp le dice al retailer dónde está su inventario y desde dónde conviene cumplir cada pedido.</strong> No mueve paquetes. Orquesta desde dónde salen.</div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-chip">
+        <div class="stat-num">500+</div>
+        <div class="stat-label">retailers activos en LatAm</div>
+      </div>
+      <div class="stat-chip">
+        <div class="stat-num">2M+</div>
+        <div class="stat-label">pedidos completados</div>
+      </div>
+      <div class="stat-chip">
+        <div class="stat-num">2,000+</div>
+        <div class="stat-label">tiendas conectadas</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- SECCIÓN 2 -->
+  <section class="section" id="ship-from-store">
+    <div class="section-label">02 — Concepto clave</div>
+    <h2>Qué es <span>ship from store</span> y por qué importa en retail</h2>
+    <p class="body-text">Ship from store es la práctica de despachar pedidos de eCommerce directamente desde tiendas físicas, en lugar de hacerlo exclusivamente desde una bodega centralizada.</p>
+    <p class="body-text">La lógica es simple: si un cliente en Ciudad de México hace un pedido y hay una tienda con stock a 3 km de su casa, tiene más sentido despachar desde ahí que desde una bodega a 200 km. El resultado es una entrega que puede ocurrir en horas en lugar de días.</p>
+    <p class="body-text">Pero más allá de la velocidad, ship from store resuelve un problema de fondo: entre el 20% y el 40% del inventario de un retailer suele estar distribuido en tiendas físicas y no participa en el canal online. Ese stock existe, pero el eCommerce no lo ve. Ship from store lo activa.</p>
+
+    <div class="highlight-card">
+      <div class="hc-label">Lo que habilita ship from store</div>
+      <div class="hc-text">
+        Entregas en horas desde tiendas cercanas · Stock visible en eCommerce · Menos dependencia de bodegas · Mejor rotación de inventario en tiendas · Menor costo de envío por distancia
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- SECCIÓN 3 -->
+  <section class="section" id="carritos">
+    <div class="section-label">03 — Conversión</div>
+    <h2>Cómo reducir carritos abandonados con <span>mejores opciones de entrega</span></h2>
+    <p class="body-text">Aproximadamente 3 de cada 4 carritos de eCommerce se abandonan antes de completar la compra. Una parte importante de esos abandonos ocurre en el paso de entrega: el cliente no encuentra opciones que se ajusten a lo que necesita, el costo de envío es más alto de lo esperado, o simplemente no sabe cuándo llegará su pedido.</p>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Por qué la falta de opciones de entrega genera abandono?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">Cuando el checkout solo ofrece una opción de envío estándar con varios días de espera, el cliente que necesita el producto pronto o que quiere recogerlo en tienda simplemente sale. No hay opción que se ajuste a su situación, así que no compra.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Qué opciones reducen más el abandono?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">Ofrecer retiro en tienda (BOPIS), entrega express el mismo día y entrega programada con fecha y horario concretos suelen tener el mayor impacto. La clave no es solo más opciones, sino opciones relevantes con información clara: "disponible hoy en tu tienda más cercana" o "llega mañana entre 10:00 y 13:00" genera más confianza que "envío estándar 3–5 días hábiles".</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Qué tan grande puede ser el impacto?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">En casos documentados con retailers que usan Flapp, activar entrega express desde tiendas y retiro en tienda redujo la tasa de abandono de carrito del 67% al 47%, lo que representó un incremento del 4% en conversión. Los clientes que eligen retiro en tienda también suelen tener un ticket promedio más alto por las compras adicionales que hacen al ir a recoger su pedido.</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- SECCIÓN 4 -->
+  <section class="section" id="comparativa">
+    <div class="section-label">04 — Comparativa</div>
+    <h2>Flapp vs. <span>OMS, courier y plataforma de eCommerce</span></h2>
+    <p class="body-text">Una de las preguntas más frecuentes es dónde encaja Flapp dentro del stack tecnológico de un retailer. La respuesta corta: Flapp no reemplaza a ninguna de estas herramientas. Se conecta a ellas para agregar la capa de fulfillment omnicanal que ninguna cubre por sí sola.</p>
+
+    <div class="compare-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Herramienta</th>
+            <th>Qué hace</th>
+            <th>Lo que no hace</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Plataforma de eCommerce<br/><small style="font-weight:400;color:#5a86a8">(Shopify, VTEX, Magento)</small></td>
+            <td>Gestiona el catálogo, el checkout y la experiencia de compra online</td>
+            <td>No sincroniza inventario de tiendas físicas ni decide desde dónde despachar</td>
+          </tr>
+          <tr>
+            <td>OMS<br/><small style="font-weight:400;color:#5a86a8">(Order Management System)</small></td>
+            <td>Centraliza la gestión de órdenes de múltiples canales</td>
+            <td>No conecta el inventario físico de tiendas ni orquesta couriers en tiempo real</td>
+          </tr>
+          <tr>
+            <td>Courier<br/><small style="font-weight:400;color:#5a86a8">(FedEx, Estafeta, 99Minutos…)</small></td>
+            <td>Transporta el paquete del punto A al punto B</td>
+            <td>No decide desde qué tienda despachar ni sincroniza inventario</td>
+          </tr>
+          <tr>
+            <td style="color:#0057B8">Flapp</td>
+            <td>Conecta el eCommerce con las tiendas físicas, sincroniza inventario y decide el origen óptimo de cada pedido. Luego coordina al courier más cercano disponible</td>
+            <td>No transporta paquetes, no es la tienda online y no reemplaza al OMS</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="body-text">Flapp opera sobre las plataformas existentes del retailer. Se integra con Shopify, VTEX, WooCommerce, Magento y Salesforce, entre otros. No requiere reemplazar lo que ya funciona.</p>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- SECCIÓN 5 -->
+  <section class="section" id="no-es">
+    <div class="section-label">05 — Aclaración</div>
+    <h2>Flapp no es <span>courier, CRM ni chatbot</span></h2>
+    <p class="body-text">Parte de generar confianza es ser claro sobre lo que una plataforma no hace. Flapp suele aparecer en conversaciones sobre logística, entrega y eCommerce, lo que a veces genera confusión sobre su naturaleza.</p>
+
+    <div class="not-grid">
+      <div class="not-card">
+        <div class="not-label">No es</div>
+        <div class="not-title">Un courier</div>
+        <div class="not-desc">Flapp no transporta paquetes. Decide desde dónde despachar y coordina con los couriers aliados disponibles.</div>
+      </div>
+      <div class="not-card">
+        <div class="not-label">No es</div>
+        <div class="not-title">Una empresa de logística</div>
+        <div class="not-desc">No opera bodegas, rutas ni flota propia. Es tecnología que orquesta la operación existente del retailer.</div>
+      </div>
+      <div class="not-card">
+        <div class="not-label">No es</div>
+        <div class="not-title">Un CRM</div>
+        <div class="not-desc">No gestiona relaciones con clientes, historial de compras ni campañas. Su foco es el cumplimiento de pedidos, no la relación post-venta.</div>
+      </div>
+      <div class="not-card">
+        <div class="not-label">No es</div>
+        <div class="not-title">Un chatbot</div>
+        <div class="not-desc">No automatiza conversaciones ni atiende clientes. Opera en la capa de inventario, pedidos y despacho.</div>
+      </div>
+      <div class="not-card">
+        <div class="not-label">No es</div>
+        <div class="not-title">Un OMS completo</div>
+        <div class="not-desc">Tiene capacidades de orquestación, pero no centraliza todos los canales de venta. Se conecta al OMS existente.</div>
+      </div>
+      <div class="not-card" style="border-color:#1D9E75;">
+        <div class="not-label" style="color:#1D9E75;">Sí es</div>
+        <div class="not-title" style="color:#1D9E75;">La capa de fulfillment omnicanal</div>
+        <div class="not-desc">Conecta eCommerce, tiendas físicas e inventario bajo una sola lógica de despacho.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-box">
+    <div>
+      <div class="cta-headline">El inventario ya lo tienes. Solo falta activarlo.</div>
+      <div class="cta-sub">Flapp conecta tus tiendas con tu canal online sin reemplazar lo que ya funciona.</div>
+    </div>
+    <a class="cta-btn" href="https://weflapp.com" target="_blank">Ver cómo funciona ↗</a>
+  </div>
+
+</div>
+
+<script>
+function toggleFaq(el) {
+  var item = el.parentElement;
+  item.classList.toggle('open');
+}
+</script>
+</body>
+</html>
