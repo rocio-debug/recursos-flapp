@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Diagnóstico de Checkout Shopify para LATAM — Flapp</title>
+  <meta name="description" content="Evalúa el estado del checkout de tu tienda Shopify en México, Chile y Colombia. 8 puntos clave para identificar qué está costando conversión — y cómo resolverlo."/>
+  <meta property="og:title" content="Diagnóstico de Checkout Shopify para LATAM — Flapp"/>
+  <meta property="og:description" content="8 puntos clave para identificar qué está costando conversión en tu checkout de Shopify en México, Chile y Colombia."/>
+  <meta property="og:url" content="https://flapp-tools.netlify.app/checkout-shopify-latam.html"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="https://weflapp.com/hubfs/Sitio%20web/LogoAzul.png"/>
+  <link rel="canonical" href="https://flapp-tools.netlify.app/checkout-shopify-latam.html"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Cómo diagnosticar y optimizar el checkout de tu Shopify en LATAM",
+    "description": "8 puntos clave para evaluar si el checkout de tu tienda Shopify está optimizado para los compradores de México, Chile y Colombia.",
+    "tool": [{ "@type": "HowToTool", "name": "Shopify" }],
+    "step": [
+      { "@type": "HowToStep", "position": 1, "name": "Visibilidad del costo total", "text": "Verifica que el costo de envío, impuestos y cuotas sean visibles desde el carrito antes del paso de pago." },
+      { "@type": "HowToStep", "position": 2, "name": "Métodos de pago locales", "text": "Activa los métodos que el comprador de tu país espera: OXXO y SPEI en MX, Webpay en CL, PSE en CO." },
+      { "@type": "HowToStep", "position": 3, "name": "Guest checkout activo", "text": "Permite que el comprador complete la compra sin crear una cuenta. La invitación al registro va después de pagar." },
+      { "@type": "HowToStep", "position": 4, "name": "Formulario reducido al mínimo", "text": "Solo campos esenciales, campos opcionales ocultos, autocomplete activo." },
+      { "@type": "HowToStep", "position": 5, "name": "QA móvil real", "text": "Prueba el checkout en dispositivo físico con red media, no solo en desktop con modo responsive." },
+      { "@type": "HowToStep", "position": 6, "name": "Promesa de entrega visible antes del pago", "text": "Muestra fecha o ventana de entrega desde el carrito, antes de que el comprador llegue al pago." },
+      { "@type": "HowToStep", "position": 7, "name": "Trust signals presentes", "text": "Logo de pasarela conocida, política de devolución y contacto verificable visibles en el checkout." },
+      { "@type": "HowToStep", "position": 8, "name": "Métricas de checkout activas", "text": "Mide checkout started, completion rate y payment success rate segmentados por país y dispositivo." }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Cuál es el checkout completion promedio en Shopify?",
+        "acceptedAnswer": { "@type": "Answer", "text": "El checkout completion promedio en Shopify ronda el 45%, es decir, menos de la mitad de quienes inician el proceso de pago lo terminan. Las tiendas del top 20% superan el 3.2% de conversión general (Littledata, 2025)." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué método de pago es más importante en México para eCommerce?",
+        "acceptedAnswer": { "@type": "Answer", "text": "En México, el débito lidera con 75% de uso declarado (AMVO, 2025). OXXO Pay y SPEI/transferencia son esenciales para capturar al segmento que no compra con tarjeta de crédito. Sin ellos, el checkout está incompleto para el mercado mexicano." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Por qué se abandona el carrito en LATAM?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Las causas más frecuentes son costos extra no visibles hasta el último paso, cuenta obligatoria para comprar, métodos de pago locales ausentes, falta de claridad sobre cuándo llegará el pedido, y formularios con demasiados campos en móvil (Baymard; AMVO, 2025)." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué porcentaje del eCommerce en México, Chile y Colombia llega desde móvil?",
+        "acceptedAnswer": { "@type": "Answer", "text": "En México el 78% del volumen eCommerce llega desde móvil, en Chile el 59%, y en Colombia el 87% — el más alto de la región (PCMI, 2025). Optimizar el checkout para pantallas pequeñas es una prioridad, no un opcional." }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --blue: #0057B8;
+      --blue-dark: #003f8a;
+      --blue-mid: #1a4ddb;
+      --blue-light: #C9EAFB;
+      --white: #ffffff;
+      --off-white: #f4f9fe;
+      --gray-100: #eaf4fc;
+      --gray-200: #d0e8f7;
+      --text-dark: #0a1e35;
+      --text-mid: #2d5478;
+      --text-light: #5a86a8;
+      --border: #c9eafb;
+      --border-mid: #d1d9f0;
+      --radius: 18px;
+      --radius-sm: 12px;
+      --shadow: 0 4px 24px rgba(0,87,184,0.10);
+      --shadow-lg: 0 8px 40px rgba(0,87,184,0.16);
+      --green: #16a34a;
+      --green-light: #f0fdf4;
+      --green-border: #86efac;
+      --orange: #d97706;
+      --orange-light: #fffbeb;
+      --orange-border: #fcd34d;
+      --red: #dc2626;
+      --red-light: #fff5f5;
+      --red-border: #fca5a5;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--off-white);
+      color: var(--text-dark);
+      font-family: 'Onest', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 52px 24px 80px;
+    }
+    .wrap { width: 100%; max-width: 680px; }
+
+    /* Badge */
+    .badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--blue-light); border: 1.5px solid var(--blue);
+      border-radius: 100px; padding: 5px 16px;
+      font-size: 11px; font-weight: 500; color: var(--blue);
+      letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 20px;
+    }
+    .badge-dot {
+      width: 7px; height: 7px; background: var(--blue);
+      border-radius: 50%; animation: badgePulse 2s ease-in-out infinite;
+    }
+    @keyframes badgePulse {
+      0%,100% { opacity:1; transform:scale(1); }
+      50% { opacity:0.35; transform:scale(0.6); }
+    }
+
+    h1 {
+      font-size: clamp(26px, 5vw, 40px); font-weight: 500;
+      line-height: 1.12; color: var(--text-dark);
+      margin-bottom: 14px; letter-spacing: -0.02em;
+    }
+    h1 span { color: var(--blue); }
+    .subtitle {
+      font-size: 15px; color: var(--text-mid); font-weight: 400;
+      line-height: 1.65; max-width: 560px; margin-bottom: 10px;
+    }
+
+    /* Intro stats bar */
+    .stats-bar {
+      display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; margin-top: 16px;
+    }
+    .stat-pill {
+      background: var(--white); border: 1.5px solid var(--border);
+      border-radius: 100px; padding: 6px 14px;
+      font-size: 12px; font-weight: 500; color: var(--text-mid);
+      box-shadow: 0 2px 8px rgba(0,87,184,0.06);
+    }
+    .stat-pill strong { color: var(--blue); font-weight: 700; }
+
+    /* Card */
+    .card {
+      background: var(--white); border: 1.5px solid var(--border);
+      border-radius: var(--radius); padding: 28px 28px;
+      margin-bottom: 16px; box-shadow: var(--shadow);
+    }
+
+    /* Country selector */
+    .country-label {
+      font-size: 11px; font-weight: 500; color: var(--text-light);
+      text-transform: uppercase; letter-spacing: 0.09em; margin-bottom: 10px; display: block;
+    }
+    .country-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+    .country-pill {
+      background: var(--off-white); border: 1.5px solid var(--border-mid);
+      border-radius: 100px; padding: 7px 18px;
+      font-size: 13px; font-weight: 500; color: var(--text-mid);
+      cursor: pointer; transition: all 0.18s; font-family: 'Onest', sans-serif;
+    }
+    .country-pill:hover { border-color: var(--blue); color: var(--blue); }
+    .country-pill.active {
+      background: var(--blue); border-color: var(--blue);
+      color: var(--white); font-weight: 600;
+    }
+
+    /* Progress bar */
+    .progress-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 10px;
+    }
+    .progress-label { font-size: 11px; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.08em; }
+    .progress-count { font-size: 13px; font-weight: 700; color: var(--blue); }
+    .progress-track {
+      height: 6px; background: var(--gray-100);
+      border-radius: 100px; overflow: hidden; margin-bottom: 24px;
+    }
+    .progress-fill {
+      height: 100%; background: linear-gradient(90deg, #0057B8, #1a4ddb);
+      border-radius: 100px; transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+      width: 0%;
+    }
+
+    /* Checklist items */
+    .check-item {
+      border: 1.5px solid var(--border-mid); border-radius: var(--radius-sm);
+      margin-bottom: 10px; overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+    .check-item:hover { border-color: var(--blue); box-shadow: 0 2px 12px rgba(0,87,184,0.08); }
+    .check-item.checked { border-color: var(--green-border); background: var(--green-light); }
+    .check-item.open { border-color: var(--blue); box-shadow: 0 2px 12px rgba(0,87,184,0.10); }
+
+    .check-header {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 16px 18px; user-select: none;
+    }
+    .check-box {
+      flex-shrink: 0; width: 22px; height: 22px;
+      border: 2px solid var(--border-mid); border-radius: 6px;
+      background: var(--off-white); margin-top: 1px;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .check-item.checked .check-box {
+      background: var(--green); border-color: var(--green);
+    }
+    .check-tick {
+      opacity: 0; transform: scale(0.5);
+      transition: all 0.2s; color: white; font-size: 13px; font-weight: 700;
+    }
+    .check-item.checked .check-tick { opacity: 1; transform: scale(1); }
+
+    .check-text { flex: 1; }
+    .check-title {
+      font-size: 14px; font-weight: 600; color: var(--text-dark);
+      line-height: 1.4; margin-bottom: 3px;
+      transition: color 0.2s;
+    }
+    .check-item.checked .check-title { color: var(--green); }
+    .check-desc { font-size: 12px; color: var(--text-light); line-height: 1.5; font-weight: 400; }
+
+    .check-arrow {
+      flex-shrink: 0; color: var(--text-light); font-size: 14px;
+      transition: transform 0.2s; margin-top: 3px;
+    }
+    .check-item.open .check-arrow { transform: rotate(180deg); }
+
+    /* Tip panel */
+    .check-tip {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+    .check-item.open .check-tip { max-height: 200px; }
+    .check-tip-inner {
+      padding: 0 18px 16px 54px; font-size: 13px; line-height: 1.65;
+    }
+    .tip-content {
+      background: var(--gray-100); border-left: 3px solid var(--blue);
+      border-radius: 0 8px 8px 0; padding: 12px 14px;
+      color: var(--text-mid); font-weight: 400;
+    }
+    .check-item.checked .tip-content {
+      background: #dcfce7; border-left-color: var(--green);
+      color: #14532d;
+    }
+
+    /* Results section */
+    #results-section { animation: fadeUp 0.4s ease; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+
+    .result-card {
+      border-radius: var(--radius); padding: 24px 28px; margin-bottom: 16px;
+      border: 1.5px solid var(--border); background: var(--white);
+      box-shadow: var(--shadow);
+    }
+    .result-score-row {
+      display: flex; align-items: center; gap: 16px; margin-bottom: 16px;
+    }
+    .result-score {
+      font-size: 3rem; font-weight: 900; color: var(--blue);
+      line-height: 1; letter-spacing: -0.04em; flex-shrink: 0;
+    }
+    .result-label-block {}
+    .result-label {
+      font-size: 16px; font-weight: 600; color: var(--text-dark);
+      margin-bottom: 4px; line-height: 1.3;
+    }
+    .result-sublabel { font-size: 12px; color: var(--text-light); font-weight: 400; }
+
+    .result-divider { height: 1px; background: var(--gray-100); margin: 16px 0; }
+
+    .pending-title {
+      font-size: 10px; font-weight: 700; color: var(--text-light);
+      text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px;
+    }
+    .pending-list { display: flex; flex-direction: column; gap: 8px; }
+    .pending-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      background: var(--off-white); border: 1.5px solid var(--border-mid);
+      border-radius: var(--radius-sm); padding: 11px 14px;
+      font-size: 13px; color: var(--text-mid); line-height: 1.5;
+    }
+    .pending-dot {
+      flex-shrink: 0; width: 8px; height: 8px;
+      border-radius: 50%; background: var(--blue); margin-top: 5px;
+    }
+
+    .all-done {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--green-light); border: 1.5px solid var(--green-border);
+      border-radius: var(--radius-sm); padding: 16px 18px;
+      font-size: 14px; color: #14532d; font-weight: 500;
+    }
+
+    /* CTA */
+    .cta-box {
+      background: var(--blue); border-radius: var(--radius);
+      padding: 28px 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 20px; flex-wrap: wrap; box-shadow: var(--shadow-lg);
+    }
+    .cta-headline { font-size: 17px; font-weight: 500; color: var(--white); margin-bottom: 5px; letter-spacing: -0.01em; }
+    .cta-sub { font-size: 13px; color: var(--blue-light); font-weight: 400; line-height: 1.5; }
+    .cta-btn {
+      background: var(--white); color: var(--blue); border: none;
+      border-radius: var(--radius-sm); padding: 13px 26px;
+      font-family: 'Onest', sans-serif; font-size: 14px; font-weight: 600;
+      cursor: pointer; white-space: nowrap; text-decoration: none;
+      display: inline-block; transition: background 0.2s, transform 0.15s;
+    }
+    .cta-btn:hover { background: var(--blue-light); transform: translateY(-1px); }
+
+    /* Footer */
+    .footer-note {
+      text-align: center; font-size: 11px; color: var(--text-light);
+      margin-top: 24px; line-height: 1.8;
+    }
+    .footer-note a { color: var(--blue); text-decoration: none; font-weight: 500; }
+
+    @media (max-width: 520px) {
+      body { padding: 32px 16px 60px; }
+      .card { padding: 20px 18px; }
+      .check-tip-inner { padding-left: 18px; }
+      .cta-box { flex-direction: column; align-items: flex-start; }
+      .cta-btn { width: 100%; text-align: center; }
+      .result-score { font-size: 2.4rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="badge"><span class="badge-dot"></span>Herramienta gratuita · Flapp</div>
+  <h1>¿Tu checkout de Shopify<br/>está listo para <span>LATAM</span>?</h1>
+  <p class="subtitle">El promedio de checkout completion en Shopify está en 45%. Lo que decide si tu tienda supera ese número suele estar en 8 puntos concretos.</p>
+
+  <div class="stats-bar">
+    <div class="stat-pill"><strong>45%</strong> checkout completion promedio Shopify</div>
+    <div class="stat-pill"><strong>~70%</strong> de carritos se abandonan</div>
+    <div class="stat-pill"><strong>87%</strong> del eCommerce en CO desde móvil</div>
+  </div>
+
+  <!-- Country selector -->
+  <div class="card">
+    <span class="country-label">¿En qué mercado operas principalmente?</span>
+    <div class="country-pills">
+      <button class="country-pill active" data-country="all">🌎 Todos</button>
+      <button class="country-pill" data-country="MX">🇲🇽 México</button>
+      <button class="country-pill" data-country="CL">🇨🇱 Chile</button>
+      <button class="country-pill" data-country="CO">🇨🇴 Colombia</button>
+    </div>
+  </div>
+
+  <!-- Checklist card -->
+  <div class="card">
+    <div class="progress-header">
+      <span class="progress-label">Tu diagnóstico</span>
+      <span class="progress-count" id="progress-count">0 de 8</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+
+    <div id="checklist-items">
+      <!-- Items rendered by JS -->
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div id="results-section"></div>
+
+  <!-- CTA -->
+  <div class="cta-box">
+    <div>
+      <div class="cta-headline">¿Quieres más opciones de entrega en tu checkout?</div>
+      <div class="cta-sub">Flapp conecta tu inventario de tiendas físicas con tu Shopify para habilitar express, retiro en tienda y entrega programada — sin cambiar tu operación.</div>
+    </div>
+    <a class="cta-btn" href="https://weflapp.com/contact" target="_blank">Agendar demo ↗</a>
+  </div>
+
+  <div class="footer-note">
+    Fuentes: Littledata 2025 · Baymard Institute · AMVO 2025 · PCMI 2025 · CCCE 2025 · Shopify<br/>
+    Una herramienta de <a href="https://weflapp.com" target="_blank">Flapp</a> · <a href="https://flapp-tools.netlify.app" target="_blank">flapp-tools.netlify.app</a>
+  </div>
+
+</div>
+
+<script>
+// ─── Data ────────────────────────────────────────────────────────────────────
+var ITEMS = [
+  {
+    id: 'costo',
+    title: 'Costo total visible antes del pago',
+    desc: 'Envío, impuestos y cuotas/MSI se muestran desde el carrito — no aparecen por primera vez en el último paso.',
+    tips: {
+      all: 'Los costos inesperados al final del checkout siguen siendo la causa #1 de abandono según Baymard. Activa el shipping calculator de Shopify en el carrito y muestra el total antes de que el comprador llegue al pago.',
+      MX: 'AMVO (2025) documenta que los costos de envío y la falta de información visible son las causas principales de abandono en México. Muestra envío + MSI disponibles desde el carrito o desde la página de producto.',
+      CL: 'En Chile, la expectativa de transparencia es alta. Muestra costo de despacho, plazo de entrega y total desde el carrito. Sorprender al comprador en el último paso casi siempre cuesta la venta.',
+      CO: 'El comprador colombiano suele comparar en varios sitios antes de pagar. Si el total cambia al llegar al checkout, el abandono es casi inmediato. Muestra todo desde el carrito.'
+    },
+    ok: 'Sólido. La transparencia antes del pago es uno de los cambios con mayor impacto en conversión — y uno de los más fáciles de implementar en Shopify.'
+  },
+  {
+    id: 'pagos',
+    title: 'Métodos de pago locales activos y visibles',
+    desc: 'Tu checkout muestra los métodos que el comprador de tu mercado espera, en el orden correcto — no solo tarjeta de crédito.',
+    tips: {
+      all: 'Cada mercado tiene sus métodos dominantes. Shopify documenta que Shop Pay puede mejorar la conversión hasta 50% vs. guest checkout, pero no sustituye al pago local: lo complementa.',
+      MX: 'En México son esenciales: OXXO Pay, SPEI/transferencia y débito además de tarjeta. El débito lidera con 75% de uso declarado (AMVO, 2025). Sin OXXO y SPEI, tu checkout está incompleto para una parte amplia del mercado.',
+      CL: 'En Chile, Webpay Plus (Transbank) es el estándar de mercado: crédito, débito, prepago y cuotas. Su ausencia genera desconfianza. Complementa con Shop Pay y tarjeta internacional.',
+      CO: 'PSE concentra el 57.2% del valor del eCommerce en Colombia (CCCE, 2025). Si no está visible y prominente como opción de pago, tu checkout está incompleto para la mayoría de tus compradores potenciales.'
+    },
+    ok: 'Bien. Los métodos correctos en el orden correcto son uno de los cambios de mayor impacto y de menor complejidad técnica.'
+  },
+  {
+    id: 'guest',
+    title: 'Guest checkout como opción principal',
+    desc: 'El comprador puede terminar la compra sin crear una cuenta. La invitación a registrarse va después de pagar.',
+    tips: {
+      all: 'La cuenta obligatoria sigue siendo una de las causas de abandono más documentadas (Baymard). Shopify tiene guest checkout nativo — verifica que esté activo y que no sea la opción secundaria en el flujo.',
+      MX: 'En México, donde la compra impulsiva desde redes sociales es frecuente, cada fricción adicional antes del pago tiene un costo real. La creación de cuenta en medio del flujo es una fricción evitable.',
+      CL: 'Muchos compradores chilenos ya tienen cuenta en los grandes retailers. Pedirles que creen una cuenta nueva en tu tienda genera resistencia innecesaria.',
+      CO: 'El comprador colombiano suele ser cauteloso con sus datos. El guest checkout genera más confianza y elimina una fricción que no aporta valor en el momento de la compra.'
+    },
+    ok: 'Correcto. Muchas tiendas recuperan conversión solo con este cambio. La cuenta puede esperar hasta después de la primera compra.'
+  },
+  {
+    id: 'formulario',
+    title: 'Formulario reducido al mínimo con autocomplete',
+    desc: 'Solo campos esenciales, campos opcionales ocultos ("Empresa", "Dirección 2"), autocomplete con geolocalización activo.',
+    tips: {
+      all: 'El checkout promedio de Shopify todavía tiene más de 11 campos (Baymard). Para los tres mercados principales de LATAM — mobile-first los tres — cada campo extra en pantalla pequeña tiene un costo en conversión.',
+      MX: 'Con 69% del tráfico eCommerce desde móvil (AMVO, 2025), cada campo que el comprador llena con el pulgar es una oportunidad de abandono. Activa Address Autocomplete de Shopify y oculta los campos que no son esenciales.',
+      CL: 'El 59% del volumen eCommerce en Chile viene de móvil. Formularios largos en celular son uno de los puntos de fricción más comunes y más fáciles de resolver en Shopify.',
+      CO: 'Colombia tiene el 87% del volumen desde móvil (PCMI, 2025). Un formulario largo en celular es casi garantía de abandono. Reduce a lo esencial y activa autocomplete.'
+    },
+    ok: 'Bien. Menos campos = menos fricción. Revisa periódicamente que actualizaciones de Shopify o apps instaladas no hayan reactivado campos opcionales.'
+  },
+  {
+    id: 'mobile',
+    title: 'QA real en celular físico hecho',
+    desc: 'Probaste el checkout en iPhone y Android físicos, con red media — no solo en desktop con modo responsive activado.',
+    tips: {
+      all: 'El modo responsive de Chrome no simula el teclado táctil, los tiempos de carga reales ni la experiencia de pago móvil. Muchos problemas de checkout solo aparecen en dispositivo físico con red media.',
+      MX: 'Con el 78% del volumen eCommerce llegando desde móvil en México, lo que pasa en esa pantalla decide la mayoría de tus ventas. Prueba en celular real antes de dar cualquier cambio por bueno.',
+      CL: 'El 59% del volumen chileno viene de móvil. Probar en desktop con responsive mode no es suficiente. Un QA real en celular toma 20 minutos y puede revelar problemas que de otra forma no se detectan.',
+      CO: 'Con el 87% del volumen desde móvil, Colombia tiene el tráfico más mobile-first de los tres mercados. Si no pruebas en celular físico, no sabes qué pasa en la mayoría de tus ventas.'
+    },
+    ok: 'Perfecto. Muchos issues de conversión solo se ven en dispositivo real. Haz este QA cada vez que cambies algo en el checkout o instales una nueva app.'
+  },
+  {
+    id: 'entrega',
+    title: 'Promesa de entrega visible antes del pago',
+    desc: 'El comprador sabe cuándo y cómo va a recibir su pedido antes de llegar al botón de pago — no solo después de comprar.',
+    tips: {
+      all: 'Hay diferencia entre "envío en 3-5 días" y "llega el jueves 10 entre 2 y 5 pm". La segunda convierte más. Mostrar la promesa de entrega desde el carrito o la página de producto es uno de los cambios con mejor ratio impacto/esfuerzo.',
+      MX: 'AMVO (2025) documenta que la falta de información sobre la entrega es una causa principal de abandono en México. El comprador no quiere adivinar cuándo llega su pedido: quiere saberlo antes de pagar.',
+      CL: 'En Chile, el comprador espera claridad en plazo y condición de despacho. Un checkout que muestra fecha estimada de llegada genera más confianza — especialmente en nuevos visitantes.',
+      CO: 'En Colombia, la incertidumbre sobre la entrega impacta directamente la intención de compra. Mostrar "llega entre el martes X y el miércoles Y" convierte mejor que solo decir "despacho en 24 hrs".'
+    },
+    ok: 'Muy bien. La certeza de entrega es tan importante como la velocidad. Las dos juntas convierten mejor que cualquiera de las dos por separado.'
+  },
+  {
+    id: 'confianza',
+    title: 'Trust signals visibles en el checkout',
+    desc: 'Logo de pasarela conocida, política de devolución, tiempos de entrega y contacto verificable son visibles durante el flujo de pago.',
+    tips: {
+      all: 'La desconfianza en el sitio sigue apareciendo entre las causas relevantes de abandono (Baymard). En Shopify puedes agregar políticas directamente en el checkout. No es decoración: en primeras visitas puede ser la diferencia entre comprar o no.',
+      MX: 'AMVO documenta que la falta de seguridad percibida es una causa frecuente de abandono en México. Logos de pasarela conocida, política clara de devolución y un contacto real reducen esa fricción desde el checkout.',
+      CL: 'En Chile existe un contexto activo de phishing y sitios falsos — la CCS lanzó "Confianza Digital" como iniciativa oficial por eso. Tu checkout debe mostrar HTTPS visible, pasarela conocida y política de devolución clara.',
+      CO: 'ACH Colombia recomienda usar métodos seguros y sitios reconocidos. Tu checkout debe transmitir eso con elementos concretos: logo de pasarela, política de devolución visible y datos de contacto verificables.'
+    },
+    ok: 'Bien. Los trust signals son especialmente importantes en nuevos visitantes y en mercados donde el comercio electrónico todavía está ganando confianza.'
+  },
+  {
+    id: 'metricas',
+    title: 'Métricas de checkout activas y segmentadas',
+    desc: 'Mides checkout started, checkout completion rate y payment success rate — segmentados por país y dispositivo.',
+    tips: {
+      all: 'Sin estas métricas es difícil saber qué está fallando y en qué paso. Shopify Analytics tiene un funnel de checkout nativo. Herramientas como Littledata pueden segmentar por dispositivo y país. Sin datos, las optimizaciones son suposiciones.',
+      MX: 'Con tráfico desde múltiples dispositivos y métodos de pago, las métricas segmentadas te dicen exactamente dónde se rompe el flujo: ¿en móvil? ¿con OXXO? ¿en el paso de dirección? Sin eso, es difícil priorizar.',
+      CL: 'En Chile, el abandono puede ocurrir en varios pasos del funnel. Las métricas segmentadas son la única forma de saber si el problema está en el método de pago, en el formulario, o en la confianza.',
+      CO: 'Con 87% del tráfico en móvil y PSE como método dominante, necesitas métricas que te digan si el problema está en el dispositivo, en el método de pago, o en otro punto del funnel.'
+    },
+    ok: 'Correcto. Los datos son la base de cualquier optimización. Con métricas segmentadas puedes priorizar con criterio, no con suposiciones.'
+  }
+];
+
+// ─── State ───────────────────────────────────────────────────────────────────
+var checked = {};
+var openItem = null;
+var country = 'all';
+
+ITEMS.forEach(function(item) { checked[item.id] = false; });
+
+// ─── Render checklist ────────────────────────────────────────────────────────
+function renderChecklist() {
+  var container = document.getElementById('checklist-items');
+  container.innerHTML = '';
+
+  ITEMS.forEach(function(item, idx) {
+    var isChecked = checked[item.id];
+    var isOpen = openItem === item.id;
+    var tipText = getTip(item, isChecked);
+
+    var el = document.createElement('div');
+    el.className = 'check-item' + (isChecked ? ' checked' : '') + (isOpen ? ' open' : '');
+    el.dataset.id = item.id;
+
+    el.innerHTML =
+      '<div class="check-header">' +
+        '<div class="check-box"><span class="check-tick">✓</span></div>' +
+        '<div class="check-text">' +
+          '<div class="check-title">' + (idx + 1) + '. ' + item.title + '</div>' +
+          '<div class="check-desc">' + item.desc + '</div>' +
+        '</div>' +
+        '<span class="check-arrow">▾</span>' +
+      '</div>' +
+      '<div class="check-tip">' +
+        '<div class="check-tip-inner">' +
+          '<div class="tip-content">' + tipText + '</div>' +
+        '</div>' +
+      '</div>';
+
+    el.addEventListener('click', function(e) {
+      handleItemClick(item.id);
+    });
+
+    container.appendChild(el);
+  });
+}
+
+function getTip(item, isChecked) {
+  if (isChecked) return item.ok;
+  var tips = item.tips;
+  return tips[country] || tips['all'];
+}
+
+// ─── Handle clicks ───────────────────────────────────────────────────────────
+function handleItemClick(id) {
+  // If clicking on already open item, toggle checked state
+  if (openItem === id) {
+    checked[id] = !checked[id];
+  } else {
+    // Open this item
+    openItem = id;
+  }
+  update();
+}
+
+// ─── Update UI ───────────────────────────────────────────────────────────────
+function update() {
+  renderChecklist();
+  updateProgress();
+  updateResults();
+}
+
+function updateProgress() {
+  var count = Object.values(checked).filter(Boolean).length;
+  var pct = (count / ITEMS.length) * 100;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-count').textContent = count + ' de ' + ITEMS.length;
+}
+
+function updateResults() {
+  var count = Object.values(checked).filter(Boolean).length;
+  var pending = ITEMS.filter(function(item) { return !checked[item.id]; });
+  var el = document.getElementById('results-section');
+
+  if (count === 0) { el.innerHTML = ''; return; }
+
+  var scoreColor = count <= 2 ? '#dc2626' : count <= 5 ? '#d97706' : '#16a34a';
+  var scoreLabel = count <= 2
+    ? 'Estado crítico — hay fricciones que están costando ventas hoy'
+    : count <= 5
+    ? 'En proceso — hay brechas concretas por resolver'
+    : count <= 7
+    ? 'Bien encaminado — queda poco por afinar'
+    : '¡Checkout sólido! El siguiente paso es sumar opciones de entrega';
+
+  var html = '<div class="result-card">';
+  html += '<div class="result-score-row">';
+  html += '<div class="result-score" style="color:' + scoreColor + '">' + count + '<span style="font-size:1.4rem;font-weight:400;color:var(--text-light);">/8</span></div>';
+  html += '<div class="result-label-block"><div class="result-label">' + scoreLabel + '</div>';
+  html += '<div class="result-sublabel">Toca cada punto para ver qué ajustar</div></div>';
+  html += '</div>';
+
+  if (pending.length > 0) {
+    html += '<div class="result-divider"></div>';
+    html += '<div class="pending-title">Puntos por resolver</div>';
+    html += '<div class="pending-list">';
+    pending.forEach(function(item) {
+      var tip = getTip(item, false);
+      html += '<div class="pending-item"><div class="pending-dot"></div><div><strong>' + item.title + '</strong><br/><span style="font-size:12px;color:var(--text-light);">' + tip + '</span></div></div>';
+    });
+    html += '</div>';
+  } else {
+    html += '<div class="result-divider"></div>';
+    html += '<div class="all-done">✓ Tienes los 8 puntos cubiertos. Tu checkout está en buen estado — el siguiente paso suele ser las opciones de entrega.</div>';
+  }
+
+  html += '</div>';
+  el.innerHTML = html;
+}
+
+// ─── Country selector ────────────────────────────────────────────────────────
+document.querySelectorAll('.country-pill').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.country-pill').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    country = btn.dataset.country;
+    update();
+  });
+});
+
+// ─── Init ────────────────────────────────────────────────────────────────────
+renderChecklist();
+updateProgress();
+</script>
+
+<!-- HubSpot Embed Code -->
+<script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/25094339.js"></script>
+</body>
+</html>
