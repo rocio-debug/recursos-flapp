@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Qué tanto sabes de promesas de entrega? — Flapp</title>
+<!-- SEO: Meta básico -->
+<meta name="description" content="¿Qué tanto sabes de promesas de entrega en eCommerce? Pon a prueba tus conocimientos con este quiz de Flapp: 8 preguntas sobre conversión, abandono de carrito y experiencia de compra.">
+<meta name="keywords" content="promesa de entrega ecommerce, conversión ecommerce, abandono de carrito, quiz ecommerce, fulfillment retail, omnicanalidad, Flapp">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://flapp-tools.netlify.app/quiz-promesa-de-entrega">
+
+<!-- SEO: Open Graph (LinkedIn, Facebook, WhatsApp) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="¿Qué tanto sabes de promesas de entrega? — Quiz de Flapp">
+<meta property="og:description" content="8 preguntas para saber qué tanto dominas uno de los temas que más afecta la conversión en eCommerce. Sin trampa.">
+<meta property="og:url" content="https://flapp-tools.netlify.app/quiz-promesa-de-entrega">
+<meta property="og:site_name" content="Flapp">
+<meta property="og:locale" content="es_MX">
+
+<!-- SEO: Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="¿Qué tanto sabes de promesas de entrega? — Quiz de Flapp">
+<meta name="twitter:description" content="8 preguntas sobre conversión, abandono de carrito y promesa de entrega en eCommerce. ¿Cuánto sabes realmente?">
+<meta name="twitter:site" content="@weflapp">
+
+<!-- SEO: Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Quiz",
+  "name": "¿Qué tanto sabes de promesas de entrega en eCommerce?",
+  "description": "Quiz de 8 preguntas sobre cómo la promesa de entrega impacta la conversión, el abandono de carrito y la experiencia de compra en retail.",
+  "url": "https://flapp-tools.netlify.app/quiz-promesa-de-entrega",
+  "inLanguage": "es",
+  "educationalLevel": "Básico",
+  "about": [
+    { "@type": "Thing", "name": "Promesa de entrega" },
+    { "@type": "Thing", "name": "Conversión en eCommerce" },
+    { "@type": "Thing", "name": "Abandono de carrito" },
+    { "@type": "Thing", "name": "Omnicanalidad" },
+    { "@type": "Thing", "name": "Fulfillment desde tienda" }
+  ],
+  "educationalAlignment": {
+    "@type": "AlignmentObject",
+    "alignmentType": "educationalSubject",
+    "targetName": "eCommerce y Retail"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Flapp",
+    "url": "https://weflapp.com",
+    "logo": "https://weflapp.com/logo.png",
+    "sameAs": [
+      "https://www.linkedin.com/company/weflapp"
+    ]
+  },
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Directores de eCommerce, Gerentes Omnicanal, Directores Comerciales"
+  },
+  "numberOfQuestions": 8,
+  "timeRequired": "PT7M",
+  "isAccessibleForFree": true,
+  "interactivityType": "active",
+  "learningResourceType": "Quiz"
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue: #0057B8;
+    --blue-light: #C9EAFB;
+    --blue-comp: #BBDDE6;
+    --neutral: #EEF2F6;
+    --white: #FFFFFF;
+    --text: #0F1923;
+    --text-muted: #5A6A7A;
+    --correct: #1A9E5F;
+    --correct-bg: #E6F7F0;
+    --incorrect: #D94040;
+    --incorrect-bg: #FDF0F0;
+    --border: #DDE4ED;
+    --radius: 12px;
+    --shadow: 0 2px 12px rgba(0,87,184,0.08);
+  }
+
+  body {
+    font-family: 'Onest', -apple-system, sans-serif;
+    background: var(--neutral);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 32px 16px 64px;
+  }
+
+  .quiz-wrapper {
+    width: 100%;
+    max-width: 680px;
+  }
+
+  /* HEADER */
+  .quiz-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+  }
+
+  .logo-svg {
+    height: 28px;
+    width: auto;
+  }
+  .logo-svg svg {
+    height: 28px;
+    width: auto;
+  }
+
+  .quiz-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--blue);
+    background: var(--blue-light);
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  /* CARD BASE */
+  .card {
+    background: var(--white);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    padding: 40px;
+    box-shadow: var(--shadow);
+  }
+
+  /* SCREEN VISIBILITY */
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  /* INTRO SCREEN */
+  .intro-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 20px;
+  }
+
+  .intro-title {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+
+  .intro-title span {
+    color: var(--blue);
+  }
+
+  .intro-desc {
+    font-size: 16px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+
+  .intro-meta {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 36px;
+    padding: 20px;
+    background: var(--neutral);
+    border-radius: 10px;
+  }
+
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .meta-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  .meta-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  /* BUTTONS */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 28px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Onest', sans-serif;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    text-decoration: none;
+  }
+
+  .btn-primary:hover { background: #004FA6; transform: translateY(-1px); }
+  .btn-primary:active { transform: translateY(0); }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--blue);
+    border: 1.5px solid var(--blue);
+    border-radius: 8px;
+    padding: 13px 28px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Onest', sans-serif;
+    cursor: pointer;
+    transition: background 0.15s;
+    text-decoration: none;
+  }
+
+  .btn-secondary:hover { background: var(--blue-light); }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--text-muted);
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Onest', sans-serif;
+    cursor: pointer;
+    transition: color 0.15s;
+  }
+
+  .btn-ghost:hover { color: var(--text); }
+
+  /* PROGRESS */
+  .progress-area {
+    margin-bottom: 28px;
+  }
+
+  .progress-labels {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .progress-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .progress-counter {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--blue);
+  }
+
+  .progress-bar {
+    height: 4px;
+    background: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--blue);
+    border-radius: 4px;
+    transition: width 0.4s ease;
+  }
+
+  /* QUESTION SCREEN */
+  .question-number {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 12px;
+  }
+
+  .question-type-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background: var(--neutral);
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+
+  .question-text {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.45;
+    color: var(--text);
+    margin-bottom: 28px;
+  }
+
+  .scenario-box {
+    background: var(--neutral);
+    border-left: 3px solid var(--blue);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 24px;
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+
+  /* OPTIONS */
+  .options-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .option-btn {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 18px;
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: left;
+    font-family: 'Onest', sans-serif;
+    font-size: 15px;
+    color: var(--text);
+    transition: border-color 0.15s, background 0.15s;
+    line-height: 1.45;
+  }
+
+  .option-btn:hover:not(:disabled) {
+    border-color: var(--blue);
+    background: var(--blue-light);
+  }
+
+  .option-letter {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    background: var(--neutral);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-muted);
+    transition: background 0.15s, color 0.15s;
+    margin-top: 1px;
+  }
+
+  .option-btn.selected {
+    border-color: var(--blue);
+    background: var(--blue-light);
+  }
+  .option-btn.selected .option-letter {
+    background: var(--blue);
+    color: white;
+  }
+
+  .option-btn.correct {
+    border-color: var(--correct);
+    background: var(--correct-bg);
+  }
+  .option-btn.correct .option-letter {
+    background: var(--correct);
+    color: white;
+  }
+
+  .option-btn.incorrect {
+    border-color: var(--incorrect);
+    background: var(--incorrect-bg);
+  }
+  .option-btn.incorrect .option-letter {
+    background: var(--incorrect);
+    color: white;
+  }
+
+  .option-btn:disabled {
+    cursor: default;
+  }
+
+  /* FEEDBACK */
+  .feedback-box {
+    display: none;
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 24px;
+    gap: 12px;
+  }
+
+  .feedback-box.show { display: flex; flex-direction: column; gap: 8px; }
+
+  .feedback-box.correct-fb {
+    background: var(--correct-bg);
+    border: 1px solid #A3DFC0;
+  }
+
+  .feedback-box.incorrect-fb {
+    background: var(--incorrect-bg);
+    border: 1px solid #F4B8B8;
+  }
+
+  .feedback-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .feedback-status.correct-text { color: var(--correct); }
+  .feedback-status.incorrect-text { color: var(--incorrect); }
+
+  .feedback-explanation {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .feedback-learning {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-top: 8px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .feedback-learning strong { color: var(--text); font-weight: 600; }
+
+  /* HINT */
+  .hint-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--text-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Onest', sans-serif;
+    padding: 0;
+    margin-bottom: 20px;
+    transition: color 0.15s;
+  }
+  .hint-btn:hover { color: var(--blue); }
+
+  .hint-text {
+    display: none;
+    font-size: 13px;
+    color: var(--text-muted);
+    background: #FFF9E6;
+    border: 1px solid #F0E0A0;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  .hint-text.show { display: block; }
+
+  /* NAVIGATION */
+  .question-nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding-top: 4px;
+  }
+
+  /* RESULTS */
+  .results-score-area {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    padding: 28px;
+    background: var(--neutral);
+    border-radius: 12px;
+    margin-bottom: 28px;
+  }
+
+  .score-circle {
+    flex-shrink: 0;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: var(--blue);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  .score-number {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .score-total {
+    font-size: 12px;
+    opacity: 0.75;
+  }
+
+  .score-info {
+    flex: 1;
+  }
+
+  .score-percent {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .score-level {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--blue);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+
+  .score-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .results-detail {
+    margin-bottom: 24px;
+  }
+
+  .results-section-title {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .tag {
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 20px;
+  }
+
+  .tag-strong {
+    background: var(--correct-bg);
+    color: var(--correct);
+    border: 1px solid #A3DFC0;
+  }
+
+  .tag-review {
+    background: #FFF3E0;
+    color: #C07000;
+    border: 1px solid #F0C060;
+  }
+
+  .cta-area {
+    background: var(--blue);
+    color: white;
+    border-radius: 12px;
+    padding: 28px;
+    margin-top: 8px;
+  }
+
+  .cta-title {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .cta-desc {
+    font-size: 14px;
+    opacity: 0.85;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  .btn-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    color: var(--blue);
+    border: none;
+    border-radius: 8px;
+    padding: 13px 24px;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: 'Onest', sans-serif;
+    cursor: pointer;
+    transition: background 0.15s;
+    text-decoration: none;
+  }
+
+  .btn-cta:hover { background: var(--blue-light); }
+
+  .results-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 24px 0;
+  }
+
+
+  .share-area {
+    margin-top: 24px;
+    margin-bottom: 4px;
+  }
+
+  .share-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+
+  .share-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .btn-share {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: none;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Onest', sans-serif;
+    cursor: pointer;
+    transition: opacity 0.15s, transform 0.1s;
+  }
+
+  .btn-share:hover { opacity: 0.85; transform: translateY(-1px); }
+  .btn-share:active { transform: translateY(0); }
+
+  .btn-download-img {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 22px;
+    border-radius: 8px;
+    border: 1.5px solid var(--border);
+    background: var(--white);
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Onest', sans-serif;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s, transform 0.1s;
+  }
+  .btn-download-img:hover { border-color: var(--blue); background: var(--blue-light); transform: translateY(-1px); }
+  .btn-download-img:active { transform: translateY(0); }
+
+  .btn-linkedin { background: #0A66C2; color: white; }
+  .btn-twitter { background: #000000; color: white; }
+  .btn-whatsapp { background: #25D366; color: white; }
+
+  .share-hint {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 10px;
+  }
+
+  #result-canvas { display: none; }
+
+  @media (max-width: 600px) {
+    .share-buttons { flex-direction: column; }
+    .btn-share, .btn-download-img { justify-content: center; }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    body { padding: 20px 12px 48px; }
+    .card { padding: 24px 20px; }
+    .intro-meta { flex-direction: column; gap: 14px; }
+    .results-score-area { flex-direction: column; text-align: center; }
+    .question-text { font-size: 16px; }
+    .intro-title { font-size: 23px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="quiz-wrapper">
+
+  <!-- HEADER -->
+  <div class="quiz-header">
+    <div class="logo-svg"><?xml version="1.0" encoding="UTF-8"?><svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4846.25 1536.3"><defs><style>.cls-1{fill:#255ba8;}</style></defs><path class="cls-1" d="M0,621.84c4.46-4.73,2.43-11.53,3.22-17.25,12.74-92.19,89.62-159.45,182.61-161.76l557.76.05.07,199.5c-6.34,87.62-74.98,159.22-161.88,170.34-190.01-1.23-383.65,7.47-573.51,1.77-2.89-.09-5.74.14-8.27-1.58v-191.08Z"/><path class="cls-1" d="M3290.01,1116.22v420.07c-54.74-.55-108-25.35-141.74-68.39-26.89-34.3-38.38-70.8-40.44-114.28l.07-935h182.1v94.78l3.04,1.53c54.8-62.89,131.59-99.38,214.75-106.91,214.04-19.4,383.51,125.02,416.31,333.1,25.22,160.04-25.47,336.02-166.82,425.77-123.88,78.66-316.56,85.08-430.13-15.76-10.98-9.75-21.57-24.41-31.89-33.34-1.93-1.67-2.56-1.97-5.25-1.58ZM3493.05,572.25c-153.6,11.99-234.6,165.91-204.09,307.68,51.15,237.67,395.93,245.39,449.49,4.28,36.65-164.99-66.2-325.95-245.4-311.96Z"/><path class="cls-1" d="M4205.08,513.41l3.77,2.27c50.33-59.76,123.07-96.15,200.53-105.95,225.7-28.56,405.34,125.87,432.87,346.52,26.17,209.75-76.54,416.18-293.92,461.12-122.55,25.33-258.01-.96-339.48-101.13-2.32-1.32-3.77,4.97-3.77,5.29v414.77c-94.78-.44-174.88-76.13-180.66-170.53l.07-947.13h180.59v94.78ZM4409.64,572.25c-157.33,11.47-238.21,171.94-202.93,315.63,57.97,236.12,407.66,231.87,450.15-15.5,27.92-162.52-72.46-312.88-247.22-300.14Z"/><path class="cls-1" d="M2804.4,1107.12c-3.26-3.32-12.28,11.28-14.4,13.67-88.49,99.99-216.6,124.55-344.06,93.56-375.13-91.19-376.82-677.64-18.68-789.69,111.18-34.79,244.93-21.59,333.93,57.62,10.17,9.05,19.93,22.54,29.49,30.86,1.71,1.49,2.51,1.13,4.62,1.03v-95.54h182.1v794.65h-173v-106.16ZM2555.22,572.25c-255.82,19.96-283.89,418.34-42.51,481.37,131.69,34.38,258.63-44.02,284.92-176.95,31.31-158.35-70.15-317.86-242.4-304.42Z"/><path class="cls-1" d="M188.17,370.1l.02-202.43C199.42,71.86,273.29,4.68,369.45,0l745.95.06-.02,197.9c-5.58,76.11-58.48,143.98-132.01,165.31-6.13,1.78-24.37,6.83-29.59,6.83H188.17Z"/><path class="cls-1" d="M1335.43,418.63c3.26-83.88-8.99-171.81,12.57-253.58C1383.6,29.97,1495.1-12.26,1625.84,3.3c52.94,6.3,103.88,24.86,149.58,51.51l-40.9,154.54c-50.37-24.05-149.45-69.66-193.34-15.03-16,19.91-20.44,47.25-23.63,71.92l-.02,152.39h195.76v154.68h-195.76v639.97h-182.1v-639.97h-89.53v-154.68h89.53Z"/><path class="cls-1" d="M2030.46,13.72v1199.56h-180.59l-.07-1030.54c5.86-93.47,86.42-170.47,180.66-169.02Z"/><path class="cls-1" d="M188.17,1239.07l-.05-202.52c15.92-165.76,227.8-229.57,331.49-96.08,92.29,118.81,11.02,290-137.88,298.66l-193.56-.06Z"/></svg></div>
+    <span class="quiz-badge">Quiz</span>
+  </div>
+
+  <!-- INTRO SCREEN -->
+  <div id="screen-intro" class="screen card active">
+    <span class="intro-tag">Promesa de entrega · eCommerce</span>
+    <h1 class="intro-title">¿Qué tanto sabes de<br><span>promesas de entrega</span>?</h1>
+    <p class="intro-desc">
+      8 preguntas para saber qué tan bien dominas uno de los temas que más afecta la conversión en eCommerce. Sin trampa.
+    </p>
+    <div class="intro-meta">
+      <div class="meta-item">
+        <span class="meta-label">Preguntas</span>
+        <span class="meta-value">8</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Tiempo estimado</span>
+        <span class="meta-value">5–8 min</span>
+      </div>
+    </div>
+    <button class="btn-primary" onclick="startQuiz()">
+      Comenzar quiz
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+
+  <!-- QUESTION SCREEN -->
+  <div id="screen-question" class="screen">
+    <div class="progress-area">
+      <div class="progress-labels">
+        <span class="progress-label">Progreso</span>
+        <span class="progress-counter" id="progress-counter">1 de 8</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="question-number" id="q-number">Pregunta 1</div>
+      <div class="question-type-tag" id="q-type-tag">Opción múltiple</div>
+      <div class="question-text" id="q-text"></div>
+      <div class="scenario-box" id="q-scenario" style="display:none"></div>
+
+      <button class="hint-btn" id="hint-btn" onclick="toggleHint()">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M8 11V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="5.5" r="0.75" fill="currentColor"/></svg>
+        Ver pista
+      </button>
+      <div class="hint-text" id="hint-text"></div>
+
+      <ul class="options-list" id="options-list"></ul>
+
+      <div class="feedback-box" id="feedback-box">
+        <div class="feedback-status" id="feedback-status"></div>
+        <div class="feedback-explanation" id="feedback-explanation"></div>
+        <div class="feedback-learning" id="feedback-learning"></div>
+      </div>
+
+      <div class="question-nav">
+        <button class="btn-primary" id="btn-next" onclick="nextQuestion()" style="display:none">
+          Siguiente pregunta
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTS SCREEN -->
+  <div id="screen-results" class="screen card">
+    <div class="question-number">Resultados</div>
+    <div class="results-score-area">
+      <div class="score-circle">
+        <span class="score-number" id="res-score">0</span>
+        <span class="score-total">de 8</span>
+      </div>
+      <div class="score-info">
+        <div class="score-percent" id="res-percent">0%</div>
+        <div class="score-level" id="res-level">—</div>
+        <div class="score-desc" id="res-desc"></div>
+      </div>
+    </div>
+
+    <div class="results-detail">
+      <div class="results-section-title">Áreas con buen desempeño</div>
+      <div class="tag-list" id="res-strong"></div>
+
+      <div class="results-section-title">Temas para revisar</div>
+      <div class="tag-list" id="res-review"></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="cta-area">
+      <div class="cta-title">¿Quieres ver cómo aplica esto en tu operación?</div>
+      <div class="cta-desc">En una llamada de 30 minutos revisamos cómo tu eCommerce puede mostrar una mejor promesa de entrega y qué impacto tendría en la conversión.</div>
+      <a href="https://weflapp.com" target="_blank" class="btn-cta">
+        Agendar demo
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+
+    <div class="share-area">
+      <div class="share-label">Comparte tu resultado</div>
+      <div class="share-buttons">
+        <button class="btn-download-img" onclick="downloadResultImage()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Descargar imagen
+        </button>
+        <button class="btn-share btn-linkedin" onclick="shareLinkedIn()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </button>
+        <button class="btn-share btn-twitter" onclick="shareTwitter()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.259 5.622 5.905-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          X / Twitter
+        </button>
+        <button class="btn-share btn-whatsapp" onclick="shareWhatsApp()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+          WhatsApp
+        </button>
+      </div>
+      <p class="share-hint">Descarga la imagen y adjúntala al publicar en redes.</p>
+    </div>
+    <canvas id="result-canvas"></canvas>
+
+    <div class="results-actions">
+      <button class="btn-ghost" onclick="restartQuiz()">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 8a6 6 0 0 1 10.5-4M14 8a6 6 0 0 1-10.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M12.5 3.5V6H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.5 12.5V10H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Volver a intentar
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const questions = [
+  {
+    type: "verdadero-falso",
+    text: "La promesa de entrega es simplemente el número de días que tarda un pedido en llegar al cliente.",
+    scenario: null,
+    options: [
+      { letter: "A", text: "Verdadero — la promesa de entrega se refiere solo al tiempo de tránsito.", correct: false },
+      { letter: "B", text: "Falso — la promesa de entrega incluye claridad, opciones disponibles y el momento en que se comunica.", correct: true }
+    ],
+    hint: "Piensa en qué información ve el cliente antes de confirmar su compra.",
+    explanation: "La promesa de entrega es mucho más que un número de días. Incluye cuándo y cómo se comunica al comprador, qué opciones tiene disponibles (express, pickup, programado) y qué tan específica es la información (fecha exacta vs. rango vago).",
+    learning: "<strong>Para recordar:</strong> Un cliente que llega al checkout y no encuentra información clara sobre cuándo recibirá su pedido tiene más probabilidades de abandonar, independientemente del precio."
+  },
+  {
+    type: "opción múltiple",
+    text: "¿En qué momento del proceso de compra tiene mayor impacto mostrar la promesa de entrega?",
+    scenario: null,
+    options: [
+      { letter: "A", text: "En el email de confirmación, después de que el cliente ya compró.", correct: false },
+      { letter: "B", text: "En el checkout, antes de que el cliente confirme el pedido.", correct: true },
+      { letter: "C", text: "En la página de inicio, como parte del mensaje de bienvenida.", correct: false },
+      { letter: "D", text: "En la página de tracking, una vez despachado el pedido.", correct: false }
+    ],
+    hint: "¿En qué paso el cliente todavía puede decidir si compra o no?",
+    explanation: "El checkout es el momento de mayor intención de compra. Si el cliente llega ahí y no encuentra información clara sobre entrega, esa incertidumbre puede ser suficiente para que abandone. Mostrar la promesa en el email de confirmación ya es tarde: la decisión ya ocurrió.",
+    learning: "<strong>Para recordar:</strong> La promesa de entrega debe estar visible en el checkout. No solo en la página de producto."
+  },
+  {
+    type: "escenario",
+    text: "¿Qué situación describe mejor lo que está pasando?",
+    scenario: "Un cliente encuentra el producto disponible en tu tienda online. Agrega el artículo al carrito y llega al checkout. Ahí solo ve la opción: 'Envío estándar — 5 a 7 días hábiles'. Abandona el pedido.",
+    options: [
+      { letter: "A", text: "El courier estaba saturado esa semana y no había disponibilidad inmediata.", correct: false },
+      { letter: "B", text: "El cliente no tenía intención real de comprar.", correct: false },
+      { letter: "C", text: "El sistema no estaba mostrando opciones más rápidas, aunque el inventario podría haberlas habilitado.", correct: true },
+      { letter: "D", text: "El precio del envío era demasiado alto para el cliente.", correct: false }
+    ],
+    hint: "El cliente sí quería comprar. La pregunta es qué información no estaba disponible en ese momento.",
+    explanation: "Cuando solo existe una opción de entrega y es lenta, el checkout no genera confianza. En muchos casos, la tienda tiene inventario disponible en puntos más cercanos que podrían habilitar entregas express o pickup, pero el sistema no lo está comunicando.",
+    learning: "<strong>Para recordar:</strong> No todas las pérdidas en el checkout se explican por precio. La falta de opciones de entrega es una causa frecuente de abandono que suele pasar desapercibida."
+  },
+  {
+    type: "opción múltiple",
+    text: "¿Cuál de estas opciones de entrega tiende a reducir más el abandono en el checkout?",
+    scenario: null,
+    options: [
+      { letter: "A", text: "Envío gratuito, sin fecha específica de entrega.", correct: false },
+      { letter: "B", text: "Envío con fecha y hora estimada clara, aunque tenga costo.", correct: true },
+      { letter: "C", text: "Envío con el courier más reconocido del mercado.", correct: false },
+      { letter: "D", text: "Envío con seguro incluido por daños en tránsito.", correct: false }
+    ],
+    hint: "Piensa en qué necesita el comprador para sentir confianza antes de pagar.",
+    explanation: "La certeza reduce la ansiedad de compra. Saber exactamente cuándo llega el pedido (incluso si tiene costo) genera más confianza que un envío gratuito con fecha vaga. El comprador necesita poder planificar.",
+    learning: "<strong>Para recordar:</strong> 'Gratis pero no sé cuándo' compite en desventaja contra 'con costo pero llega el martes'. La precisión importa."
+  },
+  {
+    type: "verdadero-falso",
+    text: "Mostrar 'disponible' en la página de producto sin especificar cuándo llegaría el pedido genera la misma confianza que mostrar una fecha estimada de entrega.",
+    scenario: null,
+    options: [
+      { letter: "A", text: "Verdadero — si el producto está disponible, el cliente entiende que llegará pronto.", correct: false },
+      { letter: "B", text: "Falso — la disponibilidad sin fecha específica no elimina la incertidumbre del comprador.", correct: true }
+    ],
+    hint: "¿Qué haría tú como comprador si ves 'disponible' pero no sabes cuándo llega?",
+    explanation: "Saber que un producto está en stock no responde la pregunta más importante para el comprador: ¿cuándo lo tengo en mis manos? Sin esa respuesta, la incertidumbre persiste y puede llevar al abandono.",
+    learning: "<strong>Para recordar:</strong> 'Disponible' no es una promesa de entrega. Es solo un estado del inventario."
+  },
+  {
+    type: "escenario",
+    text: "¿Cuál es la consecuencia más directa de este modelo de operación?",
+    scenario: "Un retailer tiene tiendas físicas en 8 ciudades distintas del país, pero todos los pedidos de eCommerce se despachan desde una sola bodega central ubicada en la capital.",
+    options: [
+      { letter: "A", text: "Los tiempos de entrega son más consistentes porque todo sale de un mismo punto.", correct: false },
+      { letter: "B", text: "Puede ofrecer envío express a cualquier punto del país sin problema.", correct: false },
+      { letter: "C", text: "Los tiempos de entrega son más largos de lo que podrían ser si se usara el inventario en tiendas.", correct: true },
+      { letter: "D", text: "Sus costos logísticos son menores al centralizar la operación.", correct: false }
+    ],
+    hint: "Piensa en la distancia que recorre cada pedido y qué alternativa existiría si las tiendas participaran.",
+    explanation: "Cuando solo despacha desde una bodega central, el pedido recorre la distancia total desde ese punto hasta el cliente. Si el cliente está en una ciudad donde ya hay stock en tienda, esa tienda podría despachar más rápido y con menor costo.",
+    learning: "<strong>Para recordar:</strong> El inventario distribuido en tiendas no solo es un activo para ventas físicas. Puede ser la fuente más cercana y rápida para cumplir un pedido online."
+  },
+  {
+    type: "opción múltiple",
+    text: "¿Qué dato se acerca más a la realidad del eCommerce respecto al abandono de carrito?",
+    scenario: null,
+    options: [
+      { letter: "A", text: "1 de cada 4 carritos se abandona antes de completar la compra.", correct: false },
+      { letter: "B", text: "1 de cada 2 carritos se abandona antes de completar la compra.", correct: false },
+      { letter: "C", text: "Aproximadamente 3 de cada 4 carritos se abandonan antes de completar la compra.", correct: true },
+      { letter: "D", text: "El abandono de carrito depende exclusivamente del precio del producto.", correct: false }
+    ],
+    hint: "La tasa de abandono en eCommerce es más alta de lo que la mayoría estima.",
+    explanation: "Estudios de la industria indican que alrededor del 70-75% de los carritos se abandonan. Entre las razones más frecuentes están los costos de envío inesperados, la falta de opciones de entrega y la incertidumbre sobre cuándo llegará el pedido.",
+    learning: "<strong>Para recordar:</strong> El abandono no es una excepción. Es la norma. El checkout es donde la mayoría de los compradores decide no comprar."
+  },
+  {
+    type: "autoevaluación",
+    text: "¿Cuál de estas situaciones describe mejor lo que muestra hoy el checkout de tu eCommerce?",
+    scenario: null,
+    options: [
+      { letter: "A", text: "Muestra una fecha de entrega específica con al menos dos opciones disponibles (express, estándar o pickup).", correct: true },
+      { letter: "B", text: "Muestra solo 'envío estándar' o un rango de días, sin fecha precisa ni alternativas.", correct: false },
+      { letter: "C", text: "Muestra disponibilidad del producto, pero no comunica opciones de entrega en el checkout.", correct: false },
+      { letter: "D", text: "No tengo claridad sobre qué información de entrega muestra mi checkout hoy.", correct: false }
+    ],
+    hint: "Piensa en la última vez que revisaste el checkout como si fueras un comprador.",
+    explanation: "La opción A describe el escenario con mayor probabilidad de conversión: el cliente ve claramente cuándo llega su pedido y puede elegir la opción que mejor se adapta a su situación. Las opciones B, C y D representan oportunidades de mejora.",
+    learning: "<strong>Para recordar:</strong> Si no recuerdas qué información muestra tu checkout, es una señal para auditarlo como comprador antes de buscar soluciones externas."
+  }
+];
+
+let currentQuestion = 0;
+let score = 0;
+let answered = [];
+
+function startQuiz() {
+  document.getElementById('screen-intro').classList.remove('active');
+  document.getElementById('screen-question').classList.add('active');
+  showQuestion(0);
+}
+
+function showQuestion(index) {
+  const q = questions[index];
+
+  document.getElementById('q-number').textContent = `Pregunta ${index + 1}`;
+  document.getElementById('q-type-tag').textContent = q.type.charAt(0).toUpperCase() + q.type.slice(1);
+  document.getElementById('q-text').textContent = q.text;
+
+  const scenarioBox = document.getElementById('q-scenario');
+  if (q.scenario) {
+    scenarioBox.textContent = q.scenario;
+    scenarioBox.style.display = 'block';
+  } else {
+    scenarioBox.style.display = 'none';
+  }
+
+  document.getElementById('hint-text').textContent = q.hint;
+  document.getElementById('hint-text').classList.remove('show');
+  document.getElementById('hint-btn').style.display = 'inline-flex';
+
+  const optionsList = document.getElementById('options-list');
+  optionsList.innerHTML = '';
+  q.options.forEach((opt, i) => {
+    const li = document.createElement('li');
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.dataset.index = i;
+    btn.innerHTML = `<span class="option-letter">${opt.letter}</span><span>${opt.text}</span>`;
+    btn.addEventListener('click', () => selectOption(i));
+    li.appendChild(btn);
+    optionsList.appendChild(li);
+  });
+
+  const feedbackBox = document.getElementById('feedback-box');
+  feedbackBox.className = 'feedback-box';
+  feedbackBox.style.display = 'none';
+
+  document.getElementById('btn-next').style.display = 'none';
+
+  // Progress
+  document.getElementById('progress-counter').textContent = `${index + 1} de ${questions.length}`;
+  const pct = (index / questions.length) * 100;
+  document.getElementById('progress-fill').style.width = `${pct}%`;
+}
+
+function toggleHint() {
+  const ht = document.getElementById('hint-text');
+  ht.classList.toggle('show');
+  const btn = document.getElementById('hint-btn');
+  btn.innerHTML = ht.classList.contains('show')
+    ? '<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M8 11V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="5.5" r="0.75" fill="currentColor"/></svg> Ocultar pista'
+    : '<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M8 11V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="5.5" r="0.75" fill="currentColor"/></svg> Ver pista';
+}
+
+function selectOption(selectedIndex) {
+  const q = questions[currentQuestion];
+  const buttons = document.querySelectorAll('.option-btn');
+
+  buttons.forEach(btn => btn.disabled = true);
+  document.getElementById('hint-btn').style.display = 'none';
+
+  const isCorrect = q.options[selectedIndex].correct;
+
+  buttons.forEach((btn, i) => {
+    if (q.options[i].correct) {
+      btn.classList.add('correct');
+    } else if (i === selectedIndex && !isCorrect) {
+      btn.classList.add('incorrect');
+    }
+  });
+
+  if (isCorrect) score++;
+  answered[currentQuestion] = isCorrect;
+
+  const feedbackBox = document.getElementById('feedback-box');
+  const feedbackStatus = document.getElementById('feedback-status');
+  const feedbackExp = document.getElementById('feedback-explanation');
+  const feedbackLearn = document.getElementById('feedback-learning');
+
+  if (isCorrect) {
+    feedbackBox.className = 'feedback-box correct-fb show';
+    feedbackStatus.className = 'feedback-status correct-text';
+    feedbackStatus.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Correcto`;
+  } else {
+    feedbackBox.className = 'feedback-box incorrect-fb show';
+    feedbackStatus.className = 'feedback-status incorrect-text';
+    feedbackStatus.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M10 6L6 10M6 6l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> Incorrecto`;
+  }
+
+  feedbackExp.textContent = q.explanation;
+  feedbackLearn.innerHTML = q.learning;
+
+  const btnNext = document.getElementById('btn-next');
+  btnNext.style.display = 'inline-flex';
+  if (currentQuestion === questions.length - 1) {
+    btnNext.querySelector('span') && (btnNext.querySelector('span').textContent = 'Ver resultados');
+    btnNext.innerHTML = 'Ver resultados <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  }
+}
+
+function nextQuestion() {
+  if (currentQuestion < questions.length - 1) {
+    currentQuestion++;
+    showQuestion(currentQuestion);
+  } else {
+    showResults();
+  }
+}
+
+function showResults() {
+  document.getElementById('screen-question').classList.remove('active');
+  document.getElementById('screen-results').classList.add('active');
+
+  const pct = Math.round((score / questions.length) * 100);
+  document.getElementById('res-score').textContent = score;
+  document.getElementById('res-percent').textContent = pct + '%';
+
+  // Progress bar final
+  document.getElementById('progress-fill').style.width = '100%';
+
+  let level, desc, strong, review;
+
+  if (pct <= 37) {
+    level = '🌱 Padawan del eCommerce';
+    desc = 'Vas comenzando. El tema de promesas de entrega tiene más impacto del que parece y todavía hay oportunidades importantes que quizás no estás viendo en tu operación.';
+    strong = ['Conceptos básicos de checkout'];
+    review = ['Promesa de entrega', 'Opciones de entrega', 'Abandono de carrito', 'Inventario distribuido'];
+  } else if (pct <= 75) {
+    level = '⚡ Crack en progreso';
+    desc = 'Tienes buena base. Dominas varios conceptos clave, pero hay puntos sobre promesas de entrega y conversión que con un poco más de contexto pueden marcar diferencia en tus resultados.';
+    strong = ['Promesa de entrega', 'Checkout', 'Abandono de carrito'];
+    review = ['Inventario distribuido', 'Opciones de entrega en tiempo real'];
+  } else {
+    level = '🔥 Jedi del eCommerce';
+    desc = 'Top del top. Entiendes cómo la promesa de entrega, el inventario y el checkout impactan directamente la conversión. Tu eCommerce está en buenas manos.';
+    strong = ['Promesa de entrega', 'Checkout y conversión', 'Abandono de carrito', 'Inventario distribuido'];
+    review = ['Casos de implementación específicos'];
+  }
+
+  document.getElementById('res-level').textContent = level;
+  document.getElementById('res-desc').textContent = desc;
+
+  const strongEl = document.getElementById('res-strong');
+  strongEl.innerHTML = strong.map(t => `<span class="tag tag-strong">${t}</span>`).join('');
+
+  const reviewEl = document.getElementById('res-review');
+  reviewEl.innerHTML = review.map(t => `<span class="tag tag-review">${t}</span>`).join('');
+}
+
+function getLevelData() {
+  const levelRaw = document.getElementById('res-level').textContent;
+  const level = levelRaw.replace(/[^\w\s áéíóúüñÁÉÍÓÚÜÑ]/g, '').trim();
+  const pct = document.getElementById('res-percent').textContent;
+  const score = document.getElementById('res-score').textContent;
+  return { level, pct, score, levelRaw };
+}
+
+function getShareText() {
+  const { level, pct } = getLevelData();
+  return 'Hice el quiz de promesas de entrega en eCommerce de Flapp y obtuve: ' + level + ' (' + pct + ' de aciertos). ¿Tú te animas?';
+}
+
+function shareLinkedIn() {
+  const url = encodeURIComponent('https://weflapp.com');
+  const text = encodeURIComponent(getShareText());
+  window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + url + '&summary=' + text, '_blank');
+}
+
+function shareTwitter() {
+  const text = encodeURIComponent(getShareText() + ' weflapp.com');
+  window.open('https://twitter.com/intent/tweet?text=' + text, '_blank');
+}
+
+function shareWhatsApp() {
+  const text = encodeURIComponent(getShareText() + ' weflapp.com');
+  window.open('https://wa.me/?text=' + text, '_blank');
+}
+
+function downloadResultImage() {
+  const { level, pct, score, levelRaw } = getLevelData();
+  const canvas = document.getElementById('result-canvas');
+  const W = 1080, H = 1080;
+  canvas.width = W;
+  canvas.height = H;
+  const ctx = canvas.getContext('2d');
+
+  // Background
+  ctx.fillStyle = '#0057B8';
+  ctx.fillRect(0, 0, W, H);
+
+  // Subtle grid pattern
+  ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+  ctx.lineWidth = 1;
+  for (let x = 0; x < W; x += 60) {
+    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+  }
+  for (let y = 0; y < H; y += 60) {
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+  }
+
+  // Top accent bar
+  ctx.fillStyle = 'rgba(255,255,255,0.12)';
+  ctx.fillRect(0, 0, W, 6);
+
+  // Score circle
+  const cx = W / 2, cy = 420;
+  ctx.beginPath();
+  ctx.arc(cx, cy, 130, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(255,255,255,0.15)';
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.arc(cx, cy, 110, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(255,255,255,0.2)';
+  ctx.fill();
+
+  // Score number
+  ctx.fillStyle = '#FFFFFF';
+  ctx.font = 'bold 80px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(score, cx, cy - 18);
+
+  ctx.font = '28px sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.7)';
+  ctx.fillText('de 8 preguntas', cx, cy + 52);
+
+  // Percentage
+  ctx.font = 'bold 56px sans-serif';
+  ctx.fillStyle = '#C9EAFB';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(pct + ' de aciertos', cx, 620);
+
+  // Level (clean, no emoji)
+  const levelClean = levelRaw.replace(/[^\w\s áéíóúüñÁÉÍÓÚÜÑ]/g, '').trim();
+  ctx.font = 'bold 52px sans-serif';
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillText(levelClean, cx, 710);
+
+  // Quiz title
+  ctx.font = '30px sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.6)';
+  ctx.fillText('Quiz: Promesas de entrega en eCommerce', cx, 820);
+
+  // Bottom brand
+  ctx.fillStyle = 'rgba(255,255,255,0.15)';
+  ctx.fillRect(0, H - 100, W, 100);
+  ctx.font = 'bold 32px sans-serif';
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillText('weflapp.com', cx, H - 50);
+
+  // Download
+  const link = document.createElement('a');
+  link.download = 'mi-resultado-flapp-quiz.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+}
+
+function restartQuiz() {
+  currentQuestion = 0;
+  score = 0;
+  answered = [];
+  document.getElementById('screen-results').classList.remove('active');
+  document.getElementById('screen-intro').classList.add('active');
+  document.getElementById('progress-fill').style.width = '0%';
+}
+</script>
+</body>
+</html>
