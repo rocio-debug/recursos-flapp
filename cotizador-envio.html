@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Cotizador de Envío Express | Flapp — México, Colombia y Chile</title>
+  <meta name="description" content="Calcula el costo de tu envío express con Flapp. Ingresa dirección de origen y destino y ve la tarifa según distancia. Cobertura en México, Colombia y Chile." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://flapp-tools.netlify.app/cotizador-envio" />
+
+  <meta property="og:title" content="Cotizador de Envío Express | Flapp" />
+  <meta property="og:description" content="¿Cuánto cuesta enviar con Flapp? Ingresa origen y destino y calcula tu tarifa express al instante." />
+  <meta property="og:url" content="https://flapp-tools.netlify.app/cotizador-envio" />
+  <meta property="og:type" content="website" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Cotizador de Envíos Express Flapp",
+        "url": "https://flapp-tools.netlify.app/cotizador-envio",
+        "description": "Herramienta gratuita para calcular el costo de envío express desde tiendas físicas hacia el domicilio del comprador. Disponible en México, Colombia y Chile.",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "isAccessibleForFree": true,
+        "provider": {
+          "@type": "Organization",
+          "name": "Flapp",
+          "url": "https://weflapp.com",
+          "areaServed": ["México", "Colombia", "Chile"],
+          "description": "Plataforma omnicanal de fulfillment que conecta el inventario de tiendas físicas con canales de eCommerce para entrega express."
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Cuánto cuesta un envío express con Flapp en México?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "En México, el costo de envío express con Flapp va desde $99 MXN (hasta 4 km en moto) hasta $179 MXN (entre 14 y 15 km en carro). Todos los precios incluyen IVA."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cuánto cuesta un envío express con Flapp en Colombia?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "En Colombia, el costo de envío express con Flapp va desde $9.990 COP (hasta 3 km) hasta $23.990 COP (entre 9 y 12 km). Los precios incluyen IVA. También se ofrece pago contra entrega."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cuánto cuesta un envío express con Flapp en Chile?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "En Chile, el costo de envío express con Flapp va desde $3.490 CLP (hasta 4 km en moto) hasta $13.990 CLP (entre 19 y 21 km en auto). Los precios son brutos."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Hasta qué distancia llega el envío express de Flapp?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Flapp Express cubre hasta 15 km en México, hasta 12 km en Colombia y hasta 21 km en Chile desde la tienda de origen."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué pasa si el destino está fuera del radio express de Flapp?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Si la distancia supera el rango express, Flapp coordina el envío con paqueterías aliadas: FedEx, DHL, Estafeta y Paquete Express en México; Coordinadora en Colombia (con pago contra entrega disponible); y Blue Express o Alas en Chile."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Flapp Express ofrece entrega el mismo día?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí. El servicio Flapp Express está diseñado para entrega el mismo día desde la tienda física más cercana al cliente, utilizando moto o carro según el tamaño del paquete."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --blue:        #0057B8;
+      --blue-dark:   #003d82;
+      --blue-mid:    #1a6fd4;
+      --blue-light:  #C9EAFB;
+      --blue-comp:   #BBDDE6;
+      --neutral:     #EEF2F6;
+      --neutral-d:   #dce4ed;
+      --text:        #0f1c30;
+      --text-muted:  #5a7090;
+      --white:       #ffffff;
+      --green:       #16a34a;
+      --green-bg:    #dcfce7;
+      --amber:       #d97706;
+      --amber-bg:    #fef3c7;
+      --r:           14px;
+      --r-sm:        8px;
+      --shadow:      0 2px 16px rgba(0,87,184,0.09);
+      --shadow-lg:   0 8px 40px rgba(0,87,184,0.16);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Onest', sans-serif;
+      background: var(--neutral);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: var(--white);
+      border-bottom: 1px solid var(--blue-comp);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header-logo {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--blue);
+      text-decoration: none;
+      letter-spacing: -0.4px;
+    }
+    .header-tag {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--blue);
+      background: var(--blue-light);
+      padding: 3px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(140deg, var(--blue) 0%, var(--blue-mid) 100%);
+      padding: 44px 24px 36px;
+      text-align: center;
+      color: white;
+    }
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--blue-light);
+      margin-bottom: 14px;
+    }
+    .hero h1 {
+      font-size: clamp(26px, 6vw, 40px);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -1.5px;
+      margin-bottom: 12px;
+    }
+    .hero p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.78);
+      max-width: 420px;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+    .flags {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 22px;
+      flex-wrap: wrap;
+    }
+    .flag-pill {
+      font-size: 13px;
+      font-weight: 600;
+      color: white;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.22);
+      padding: 5px 14px;
+      border-radius: 20px;
+    }
+
+    /* ── LAYOUT ── */
+    .main {
+      max-width: 580px;
+      margin: 0 auto;
+      padding: 28px 20px 60px;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--white);
+      border-radius: var(--r);
+      padding: 26px;
+      box-shadow: var(--shadow);
+      margin-bottom: 16px;
+    }
+
+    /* ── FORM ── */
+    .form-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 20px;
+    }
+
+    .field { margin-bottom: 14px; }
+
+    .field label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    .input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .field input {
+      width: 100%;
+      padding: 13px 16px;
+      border: 2px solid var(--neutral-d);
+      border-radius: var(--r-sm);
+      font-family: 'Onest', sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      background: var(--neutral);
+      transition: border-color .2s, box-shadow .2s, background .2s;
+      outline: none;
+    }
+    .field input:focus {
+      border-color: var(--blue);
+      background: var(--white);
+      box-shadow: 0 0 0 3px rgba(0,87,184,0.10);
+    }
+    .field input::placeholder { color: #a0aec0; }
+
+    /* connector dot between inputs */
+    .route-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--neutral-d);
+      margin: 4px 0 4px 17px;
+    }
+
+    /* ── BUTTON ── */
+    .btn {
+      width: 100%;
+      padding: 15px;
+      background: var(--blue);
+      color: white;
+      border: none;
+      border-radius: var(--r-sm);
+      font-family: 'Onest', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s, transform .15s, box-shadow .2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 6px;
+    }
+    .btn:hover:not(:disabled) {
+      background: var(--blue-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(0,87,184,0.28);
+    }
+    .btn:active:not(:disabled) { transform: translateY(0); }
+    .btn:disabled { opacity: .6; cursor: not-allowed; }
+
+    /* ── SPINNER ── */
+    .spin {
+      width: 18px; height: 18px;
+      border: 3px solid rgba(255,255,255,.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── ERROR ── */
+    .error {
+      display: none;
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: var(--r-sm);
+      padding: 11px 14px;
+      font-size: 13.5px;
+      color: #7c2d12;
+      margin-top: 12px;
+      line-height: 1.5;
+    }
+    .error.show { display: block; }
+
+    /* ── RESULTS ── */
+    #results { display: none; }
+    #results.show { display: block; }
+
+    /* Distance banner */
+    .dist-banner {
+      background: var(--blue);
+      border-radius: var(--r);
+      padding: 20px 24px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: white;
+    }
+    .dist-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--blue-light);
+      margin-bottom: 4px;
+    }
+    .dist-value {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1;
+    }
+    .dist-unit { font-size: 16px; font-weight: 500; opacity: .75; }
+    .dist-country-flag { font-size: 30px; line-height: 1; text-align: right; }
+    .dist-country-name { font-size: 13px; font-weight: 600; opacity: .8; text-align: right; margin-top: 4px; }
+
+    /* Price cards */
+    .price-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .express-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--green-bg);
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+    .price-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .price-card {
+      background: var(--white);
+      border-radius: var(--r);
+      padding: 20px 24px;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .vehicle-info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .vehicle-emoji { font-size: 26px; line-height: 1; }
+    .vehicle-name {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .vehicle-note {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .price-right { text-align: right; }
+    .price-num {
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--blue);
+      letter-spacing: -1px;
+      line-height: 1;
+    }
+    .price-curr {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    /* Note pill */
+    .note {
+      background: var(--blue-light);
+      border-radius: var(--r-sm);
+      padding: 11px 14px;
+      font-size: 13px;
+      color: var(--blue-dark);
+      line-height: 1.55;
+      margin-bottom: 14px;
+    }
+
+    /* Out of range */
+    .out-card {
+      background: var(--white);
+      border-radius: var(--r);
+      padding: 22px 24px;
+      box-shadow: var(--shadow);
+      border-left: 4px solid var(--amber);
+      margin-bottom: 14px;
+    }
+    .out-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .out-body {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+    .carriers {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+    .carrier {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--blue);
+      background: var(--blue-light);
+      padding: 5px 13px;
+      border-radius: 20px;
+    }
+
+    /* CTA */
+    .cta-card {
+      background: var(--white);
+      border-radius: var(--r);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .cta-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+    .cta-body { font-size: 14px; color: var(--text-muted); margin-bottom: 18px; }
+    .cta-link {
+      display: inline-block;
+      padding: 13px 26px;
+      background: var(--blue);
+      color: white;
+      text-decoration: none;
+      border-radius: var(--r-sm);
+      font-family: 'Onest', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      transition: background .2s, transform .15s;
+    }
+    .cta-link:hover {
+      background: var(--blue-dark);
+      transform: translateY(-1px);
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      font-size: 12.5px;
+      color: var(--text-muted);
+      padding: 8px 0 0;
+      line-height: 1.7;
+    }
+    .footer a { color: var(--blue); text-decoration: none; }
+
+    /* Fade-in */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp .35s ease both; }
+    .fade-up-2 { animation: fadeUp .35s ease .08s both; }
+    .fade-up-3 { animation: fadeUp .35s ease .16s both; }
+    .fade-up-4 { animation: fadeUp .35s ease .24s both; }
+
+    /* Google autocomplete overrides */
+    .pac-container {
+      font-family: 'Onest', sans-serif !important;
+      border-radius: 0 0 var(--r-sm) var(--r-sm) !important;
+      border: 1px solid var(--neutral-d) !important;
+      box-shadow: var(--shadow) !important;
+      margin-top: 2px;
+    }
+    .pac-item { padding: 9px 14px; font-size: 14px; cursor: pointer; }
+    .pac-item:hover { background: var(--neutral); }
+    .pac-item-query { font-weight: 600; }
+
+    @media (max-width: 420px) {
+      .dist-banner { flex-direction: column; gap: 10px; text-align: center; }
+      .dist-country-flag, .dist-country-name { text-align: center; }
+      .hero h1 { letter-spacing: -1px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <a href="https://flapp-tools.netlify.app" class="header-logo">flapp tools</a>
+    <span class="header-tag">Cotizador</span>
+  </header>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-eyebrow">Herramienta gratuita</div>
+    <h1>Cotiza tu envío<br>con Flapp</h1>
+    <p>Ingresa la dirección de tu tienda y la de tu cliente. Calculamos los kilómetros y te mostramos la tarifa express al instante.</p>
+    <div class="flags">
+      <span class="flag-pill">🇲🇽 México</span>
+      <span class="flag-pill">🇨🇴 Colombia</span>
+      <span class="flag-pill">🇨🇱 Chile</span>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <main class="main">
+
+    <!-- Form -->
+    <div class="card">
+      <div class="form-title">📍 ¿Desde dónde a dónde?</div>
+
+      <div class="field">
+        <label>Dirección de origen (tu tienda)</label>
+        <div class="input-wrap">
+          <input id="origin" type="text" placeholder="Ej: Álvaro Obregón 42, CDMX" autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="route-dot"></div>
+
+      <div class="field">
+        <label>Dirección de destino (tu cliente)</label>
+        <div class="input-wrap">
+          <input id="destination" type="text" placeholder="Ej: Condesa 157, CDMX" autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="error" id="errorMsg"></div>
+
+      <button class="btn" id="calcBtn" onclick="calcular()">
+        <span id="btnText">Calcular envío</span>
+        <span id="btnIcon">→</span>
+      </button>
+    </div>
+
+    <!-- Results (hidden until calculated) -->
+    <div id="results">
+
+      <!-- Distance banner -->
+      <div class="dist-banner fade-up" id="distBanner">
+        <div>
+          <div class="dist-label">Distancia aproximada</div>
+          <div>
+            <span class="dist-value" id="distVal">0</span>
+            <span class="dist-unit"> km</span>
+          </div>
+        </div>
+        <div>
+          <div class="dist-country-flag" id="cFlag"></div>
+          <div class="dist-country-name" id="cName"></div>
+        </div>
+      </div>
+
+      <!-- Prices or out-of-range -->
+      <div id="priceArea"></div>
+
+      <!-- Note -->
+      <div class="note fade-up-3" id="noteArea"></div>
+
+      <!-- CTA -->
+      <div class="cta-card fade-up-4">
+        <div class="cta-title">¿Quieres activar Flapp en tu tienda?</div>
+        <div class="cta-body">Habla con nuestro equipo y empezamos en días.</div>
+        <a href="https://weflapp.com" class="cta-link" target="_blank">Hablar con un asesor →</a>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      Tarifas aproximadas — pueden variar según acuerdos con proveedores.<br>
+      Hecho por <a href="https://weflapp.com" target="_blank">Flapp</a> — Tu tienda es tu centro de distribución
+    </div>
+
+  </main>
+
+  <script>
+  /* =====================================================
+     TARIFAS
+  ===================================================== */
+  const T = {
+    MX: {
+      nombre: 'México', flag: '🇲🇽', moneda: 'MXN',
+      nota: 'IVA incluido',
+      maxKm: 15,
+      paqueterias: ['FedEx', 'DHL', 'Estafeta', 'Paquete Express'],
+      contraEntrega: false,
+      tabla: [
+        { d:  0, h:  4, moto:  99, carro: 119 },
+        { d:  4, h:  8, moto: 119, carro: 129 },
+        { d:  8, h: 10, moto: 129, carro: 139 },
+        { d: 10, h: 11, moto: 139, carro: 139 },
+        { d: 11, h: 12, moto: 139, carro: 149 },
+        { d: 12, h: 13, moto: 149, carro: 159 },
+        { d: 13, h: 14, moto: 149, carro: 169 },
+        { d: 14, h: 15, moto: 159, carro: 179 },
+      ]
+    },
+    CO: {
+      nombre: 'Colombia', flag: '🇨🇴', moneda: 'COP',
+      nota: 'IVA incluido',
+      maxKm: 12,
+      paqueterias: ['Coordinadora'],
+      contraEntrega: true,
+      tabla: [
+        { d:  0, h:  3, moto:  9990 },
+        { d:  3, h:  4, moto: 11990 },
+        { d:  4, h:  5, moto: 13990 },
+        { d:  5, h:  6, moto: 15990 },
+        { d:  6, h:  7, moto: 17990 },
+        { d:  7, h:  8, moto: 19990 },
+        { d:  8, h:  9, moto: 21990 },
+        { d:  9, h: 12, moto: 23990 },
+      ]
+    },
+    CL: {
+      nombre: 'Chile', flag: '🇨🇱', moneda: 'CLP',
+      nota: 'Precio bruto',
+      maxKm: 21,
+      paqueterias: ['Blue Express', 'Alas'],
+      contraEntrega: false,
+      tabla: [
+        { d:  0, h:  2, moto:  3490, auto:  4990 },
+        { d:  2, h:  4, moto:  3490, auto:  5990 },
+        { d:  4, h:  5, moto:  4990, auto:  6990 },
+        { d:  5, h:  7, moto:  4990, auto:  7990 },
+        { d:  7, h:  8, moto:  4990, auto:  8990 },
+        { d:  8, h:  9, moto:  5990, auto:  8990 },
+        { d:  9, h: 12, moto:  5990, auto:  9990 },
+        { d: 12, h: 13, moto:  7990, auto: 10990 },
+        { d: 13, h: 14, moto:  8990, auto: 10990 },
+        { d: 14, h: 16, moto:  8990, auto: 11990 },
+        { d: 16, h: 19, moto:  9990, auto: 12990 },
+        { d: 19, h: 21, moto:  9990, auto: 13990 },
+      ]
+    }
+  };
+
+  /* =====================================================
+     UTILS
+  ===================================================== */
+  function fmt(n, moneda) {
+    if (moneda === 'MXN') return `$${n}`;
+    return `$${n.toLocaleString('es-CL')}`;
+  }
+
+  function country(place) {
+    const c = (place.address_components || []).find(a => a.types.includes('country'));
+    return c ? c.short_name : null;
+  }
+
+  function showErr(msg) {
+    const el = document.getElementById('errorMsg');
+    el.textContent = msg;
+    el.classList.add('show');
+  }
+
+  function hideErr() {
+    document.getElementById('errorMsg').classList.remove('show');
+  }
+
+  function loading(on) {
+    const btn = document.getElementById('calcBtn');
+    btn.disabled = on;
+    document.getElementById('btnText').textContent = on ? 'Calculando...' : 'Calcular envío';
+    document.getElementById('btnIcon').innerHTML = on
+      ? '<div class="spin"></div>'
+      : '→';
+  }
+
+  /* =====================================================
+     RENDER RESULTS
+  ===================================================== */
+  function renderResults(code, km) {
+    const cfg = T[code];
+    const row = cfg.tabla.find(r => km >= r.d && km < r.h);
+
+    // Distance banner
+    document.getElementById('distVal').textContent = km.toFixed(1);
+    document.getElementById('cFlag').textContent    = cfg.flag;
+    document.getElementById('cName').textContent    = cfg.nombre;
+
+    const area = document.getElementById('priceArea');
+    const note = document.getElementById('noteArea');
+
+    if (row) {
+      /* ── EXPRESS AVAILABLE ── */
+      let cards = '';
+
+      if (code === 'MX') {
+        cards = vehicleCard('🏍️', 'Moto', 'Paquetes hasta ~10 kg', row.moto, cfg.moneda)
+              + vehicleCard('🚗', 'Carro', 'Paquetes voluminosos', row.carro, cfg.moneda);
+      } else if (code === 'CO') {
+        cards = vehicleCard('🏍️', 'Moto', 'Envío express', row.moto, cfg.moneda);
+      } else if (code === 'CL') {
+        cards = vehicleCard('🏍️', 'Moto', 'Paquetes hasta ~10 kg', row.moto, cfg.moneda)
+              + vehicleCard('🚗', 'Auto', 'Paquetes voluminosos', row.auto, cfg.moneda);
+      }
+
+      area.innerHTML = `
+        <div class="price-header fade-up-2">
+          <span class="express-badge">⚡ Express disponible</span>
+          <span class="price-sub">Entrega el mismo día</span>
+        </div>
+        ${cards}
+      `;
+
+      note.innerHTML = `<strong>💡 ${cfg.nota}.</strong> La distancia es aproximada — calculada por ruta en auto. La tarifa final puede ajustarse según la ruta real del repartidor.`;
+
+    } else {
+      /* ── OUT OF RANGE ── */
+      const cdNote = cfg.contraEntrega ? ' También ofrecemos pago contra entrega.' : '';
+      area.innerHTML = `
+        <div class="out-card fade-up-2">
+          <div class="out-title">📦 Fuera del rango express</div>
+          <div class="out-body">
+            Con <strong>${km.toFixed(1)} km</strong>, esta ruta supera el límite de <strong>${cfg.maxKm} km</strong> para entrega express en ${cfg.nombre}. Aun así podemos enviarlo.${cdNote}
+          </div>
+          <div class="carriers">
+            ${cfg.paqueterias.map(p => `<span class="carrier">${p}</span>`).join('')}
+          </div>
+        </div>
+      `;
+      note.innerHTML = `<strong>💬 ¿Necesitas cotizar esta ruta?</strong> Habla con nuestro equipo y armamos la solución según tus volúmenes y destinos.`;
+    }
+
+    const results = document.getElementById('results');
+    results.classList.add('show');
+    setTimeout(() => results.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 80);
+  }
+
+  function vehicleCard(emoji, name, hint, price, moneda) {
+    return `
+      <div class="price-card fade-up-2">
+        <div class="vehicle-info">
+          <div class="vehicle-emoji">${emoji}</div>
+          <div>
+            <div class="vehicle-name">${name}</div>
+            <div class="vehicle-note">${hint}</div>
+          </div>
+        </div>
+        <div class="price-right">
+          <div class="price-num">${fmt(price, moneda)}</div>
+          <div class="price-curr">${moneda}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  /* =====================================================
+     GOOGLE MAPS
+  ===================================================== */
+  var originPlace = null, destPlace = null;
+
+  window.initMap = function() {
+    var opts = {
+      fields: ['address_components', 'geometry', 'formatted_address', 'name']
+    };
+
+    var acO = new google.maps.places.Autocomplete(document.getElementById('origin'), opts);
+    var acD = new google.maps.places.Autocomplete(document.getElementById('destination'), opts);
+
+    acO.addListener('place_changed', function() {
+      var p = acO.getPlace();
+      if (!p || !p.geometry || !p.geometry.location) return;
+      originPlace = p;
+      hideErr();
+    });
+
+    acD.addListener('place_changed', function() {
+      var p = acD.getPlace();
+      if (!p || !p.geometry || !p.geometry.location) return;
+      destPlace = p;
+      hideErr();
+    });
+  };
+
+  function calcular() {
+    hideErr();
+
+    if (!originPlace?.geometry) {
+      showErr('⚠️ Selecciona la dirección de origen del menú desplegable.');
+      return;
+    }
+    if (!destPlace?.geometry) {
+      showErr('⚠️ Selecciona la dirección de destino del menú desplegable.');
+      return;
+    }
+
+    const co = country(originPlace);
+    const cd = country(destPlace);
+
+    if (!co || !cd)           { showErr('⚠️ No pudimos detectar el país. Intenta de nuevo.'); return; }
+    if (co !== cd)            { showErr('⚠️ El origen y el destino deben estar en el mismo país.'); return; }
+    if (!T[co])               { showErr('⚠️ Por ahora cotizamos solo en México, Colombia y Chile.'); return; }
+
+    loading(true);
+
+    const lat1 = originPlace.geometry.location.lat();
+    const lng1 = originPlace.geometry.location.lng();
+    const lat2 = destPlace.geometry.location.lat();
+    const lng2 = destPlace.geometry.location.lng();
+
+    // Haversine + factor de ruta (1.3x aproxima distancia real en auto)
+    const R = 6371;
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLng = (lng2 - lng1) * Math.PI / 180;
+    const a = Math.sin(dLat/2) * Math.sin(dLat/2)
+            + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180)
+            * Math.sin(dLng/2) * Math.sin(dLng/2);
+    const lineal = R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const km = lineal * 1.3; // factor ruta
+
+    loading(false);
+    document.getElementById('results').classList.remove('show');
+    setTimeout(() => renderResults(co, km), 40);
+  }
+
+  // Enter key support
+  ['origin', 'destination'].forEach(id => {
+    document.getElementById(id).addEventListener('keydown', e => {
+      if (e.key === 'Enter') calcular();
+    });
+  });
+  </script>
+
+  <!--
+    ⚠️ IMPORTANTE: Reemplaza TU_API_KEY con tu clave real de Google Maps.
+    La API necesita tener habilitados: Places API y Distance Matrix API.
+  -->
+  <script>
+    (function() {
+      var s = document.createElement('script');
+      s.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB7ej5itTdlzKK5QLzJxL24Tq74IjcAcXQ&libraries=places&callback=initMap';
+      s.async = true;
+      s.defer = true;
+      document.head.appendChild(s);
+    })();
+  </script>
+
+</body>
+</html>
